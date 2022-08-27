@@ -274,13 +274,33 @@ pkgs.neovim.override {
           virtual_lines = false,
         })
 
+        nvim_lsp.hls.setup  {
+          on_attach = on_attach,
+          capabilities = capabilities,
+        }
+        nvim_lsp.rnix.setup  {
+          on_attach = on_attach,
+          capabilities = capabilities,
+        }
         nvim_lsp.clangd.setup {
           on_attach = on_attach,
           capabilities = capabilities,
         }
-        nvim_lsp.hls.setup  {
+        nvim_lsp.rust_analyzer.setup  {
           on_attach = on_attach,
           capabilities = capabilities,
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                buildScripts = {
+                  enable = true,
+                },
+              },
+              procMacro = {
+                enable = true
+              },
+            },
+          },
         }
         nvim_lsp.gdscript.setup {
           on_attach = on_attach,
@@ -297,6 +317,8 @@ pkgs.neovim.override {
         )
 
         require("fidget").setup {}
+
+        require('crates').setup()
 
         require("trouble").setup {
           icons = false,
@@ -410,6 +432,9 @@ pkgs.neovim.override {
         nvim-lspconfig
         trouble-nvim
         #nvim-lightbulb
+
+        # rust cargo crate support
+        crates-nvim
 
         lsp_lines-nvim
 
