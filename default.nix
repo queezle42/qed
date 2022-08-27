@@ -91,10 +91,10 @@ pkgs.neovim.override {
         cmp-buffer
         cmp-path
         cmp-cmdline
+        cmp_luasnip
 
         # Snippets
         luasnip
-        cmp_luasnip
 
         # treesitter
         (nvim-treesitter.withPlugins (
