@@ -20,5 +20,16 @@
           qed = pkgs.qed;
         }
       );
+
+      devShell = forAllSystems (system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in pkgs.mkShell {
+          inputsFrom = [ self.packages.${system}.default ];
+          packages = [
+            pkgs.sumneko-lua-language-server
+          ];
+        }
+      );
     };
 }
