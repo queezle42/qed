@@ -67,7 +67,7 @@ set completeopt=menu,menuone,noselect
 " Save with Ctrl-S (if file has changed)
 nnoremap <C-s> <Cmd>update<CR>
 
-nnoremap <C-p> <Cmd>Files<CR>
+nnoremap <C-p> <Cmd>Telescope find_files<CR>
 
 " Use `ALT+{h,j,k,l}` to navigate windows from any mode
 tnoremap <A-h> <C-\><C-N><C-w>h

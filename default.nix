@@ -66,9 +66,10 @@ pkgs.neovim.override {
         # Fuzzy finder
         telescope-nvim
         telescope-symbols-nvim
+        telescope-fzf-native-nvim
 
-        fzfWrapper
-        fzf-vim
+        #fzfWrapper
+        #fzf-vim
 
         which-key-nvim
 
