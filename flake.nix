@@ -17,6 +17,7 @@
         let pkgs = import nixpkgs { inherit system; overlays = [ self.overlays.default ]; };
         in {
           default = pkgs.qed;
+          qed = pkgs.qed;
         }
       );
     };
