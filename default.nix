@@ -92,6 +92,10 @@ pkgs.neovim.override {
         cmp-path
         cmp-cmdline
 
+        # Snippets
+        luasnip
+        cmp_luasnip
+
         # treesitter
         (nvim-treesitter.withPlugins (
           plugins: with plugins; [
