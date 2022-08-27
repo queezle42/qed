@@ -102,10 +102,25 @@ pkgs.neovim.override {
           plugins: with plugins; [
             tree-sitter-haskell
             tree-sitter-nix
+            tree-sitter-lua
             tree-sitter-python
             tree-sitter-rust
             tree-sitter-c
             tree-sitter-cpp
+            tree-sitter-zig
+            tree-sitter-json
+            tree-sitter-yaml
+            tree-sitter-toml
+            tree-sitter-html
+            tree-sitter-css
+            tree-sitter-scss
+            tree-sitter-javascript
+            tree-sitter-latex
+            tree-sitter-bibtex
+            tree-sitter-markdown
+            tree-sitter-gdscript
+            tree-sitter-godot-resource
+            tree-sitter-dockerfile
           ]
         ))
         playground
