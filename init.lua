@@ -200,9 +200,8 @@ require('crates').setup()
 
 require("trouble").setup {
   icons = false,
+  -- Not required since a bar is used
   padding = false,
-  auto_open = true,
-  auto_close = true,
 }
 
 require'nvim-treesitter.configs'.setup {

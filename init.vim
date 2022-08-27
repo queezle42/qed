@@ -90,6 +90,8 @@ let g:NERDTreeShowHidden = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Toggle with Alt-b
 nnoremap <a-b> <Cmd>NERDTreeToggle<CR>
+" Project view
+nnoremap <Leader>p <Cmd>NERDTreeToggle<CR>
 
 " Airline
 let g:airline#extensions#tabline#enabled = 0
@@ -118,6 +120,7 @@ nnoremap <silent> gb <Cmd>BufferLinePick<CR>
 "  nnoremap <Leader>lx <Cmd>call LanguageClient#textDocument_references()<CR>
 "  nnoremap <Leader>lq <Cmd>LanguageClientStop<CR><Cmd>LanguageClientStart<CR>
 
+nnoremap <Leader>t <Cmd>TroubleToggle<CR>
 
 nnoremap <Leader>go <Cmd>Goyo<CR>
 
