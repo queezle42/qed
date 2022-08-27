@@ -39,13 +39,22 @@ telescope.setup({
       find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*" },
     },
   },
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      }
+    }
+  }
 })
 
 -- TODO evaluate zf once UTF-8 is supported
 -- (zig finder, the sorting algorithm is an improvement to fzf)
 -- https://github.com/natecraddock/zf
 -- https://github.com/natecraddock/telescope-zf-native.nvim
-telescope.load_extension('fzf')
+telescope.load_extension("fzf")
+
+telescope.load_extension("ui-select")
 
 
 -- Setup nvim-cmp.
