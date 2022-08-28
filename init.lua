@@ -306,16 +306,6 @@ require("bufferline").setup {
 --   delay = 0,
 -- })
 
---require('nvim-lightbulb').setup({
---  autocmd = {
---    enabled = true,
---    -- see :help autocmd-pattern
---    pattern = {"*"},
---    -- see :help autocmd-events
---    events = {"CursorHold", "InsertLeave"},
---  }
---})
-
 require("which-key").setup {}
 
 require("gitsigns").setup {}

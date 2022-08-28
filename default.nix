@@ -80,7 +80,6 @@ pkgs.neovim.override {
         # neovim native language server support
         nvim-lspconfig
         trouble-nvim
-        #nvim-lightbulb
 
         # rust cargo crate support
         crates-nvim
