@@ -8,9 +8,9 @@ map ü [
 map + ]
 
 " Configure colorscheme
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='hard'
-colorscheme gruvbox
+" let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_contrast_light='hard'
+" colorscheme gruvbox
 "hi ColorMagenta guifg='#f92672' guibg=132 guibg='NONE' ctermbg='NONE' gui='NONE' cterm='NONE'
 "hi! link haskellOperators ColorMagenta
 

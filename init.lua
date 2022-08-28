@@ -1,3 +1,5 @@
+vim.cmd("colorscheme kanagawa")
+
 -- require("gruvbox").setup({
 --   undercurl = true,
 --   underline = true,

@@ -36,6 +36,7 @@ pkgs.neovim.override {
 
         # Colorscheme
         #gruvbox-nvim
+        kanagawa-nvim
         gruvbox-community
         tokyonight-nvim
 
