@@ -16,6 +16,8 @@ vim.cmd("colorscheme kanagawa")
 -- })
 -- vim.cmd([[colorscheme gruvbox]])
 
+require('Comment').setup()
+
 
 -- Telescope fuzzy finder
 local telescope = require("telescope")

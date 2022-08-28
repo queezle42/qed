@@ -53,6 +53,8 @@ pkgs.neovim.override {
         # Jump to any location by showing helper marks.
         vim-easymotion
 
+        comment-nvim
+
         # Provides hook that allows other plugins to register repeat actions ('.')
         vim-repeat
         # Increment and decrement dates and times with <Ctrl-A> and <Ctrl-X>
