@@ -148,7 +148,7 @@ pkgs.neovim.override {
         nerdtree
 
         # Better status bar
-        vim-airline
+        lualine-nvim
 
         bufferline-nvim
 

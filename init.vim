@@ -93,9 +93,6 @@ nnoremap <a-b> <Cmd>NERDTreeToggle<CR>
 " Project view
 nnoremap <Leader>p <Cmd>NERDTreeToggle<CR>
 
-" Airline
-let g:airline#extensions#tabline#enabled = 0
-
 let g:highlightedyank_highlight_duration = 200
 
 filetype on
