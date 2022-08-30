@@ -27,6 +27,14 @@ pkgs.neovim.override {
       source ${./init.vim}
       source ${./init.lua}
 
+      lua << EOF
+        local haskell_highlight_grammar_file = io.open("${./tree-sitter-haskell/highlights.scm}")
+        local haskell_highlight_grammar = haskell_highlight_grammar_file:read('a')
+        haskell_highlight_grammar_file:close()
+
+        require("vim.treesitter.query").set_query("haskell", "highlights", haskell_highlight_grammar)
+      EOF
+
       ${extraRC}
     '';
     packages.myVimPackage = with pkgs.vimPlugins; {

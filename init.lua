@@ -1,20 +1,123 @@
+local kanagawa_colors = require("kanagawa.colors").setup()
+
+local sakura_types = false;
+
+require("kanagawa").setup {
+  keywordStyle = {
+    italic = false,
+  },
+  overrides = {
+    haskellBracket = {
+      fg = kanagawa_colors.fujiWhite,
+    },
+    haskellConstraint = {
+      fg = kanagawa_colors.waveRed,
+      italic = true,
+    },
+    haskellConstructor = {
+      fg = kanagawa_colors.waveAqua2,
+    },
+    haskellDeclaration = {
+      fg = kanagawa_colors.crystalBlue,
+      bold = true,
+    },
+    haskellDefinition = {
+      fg = kanagawa_colors.crystalBlue,
+    },
+    haskellImportAll = {
+      fg = kanagawa_colors.surimiOrange,
+    },
+    haskellKeyword = {
+      fg = kanagawa_colors.oniViolet,
+    },
+    haskellNamespace = {
+      fg = kanagawa_colors.boatYellow2,
+    },
+    haskellOperator = {
+      -- Darker
+      -- fg = "#CF98EB",
+      --
+      -- My current preference
+      fg = "#C3A3DF",
+
+      -- Lighter
+      -- fg = "#CDAFE7",
+
+      -- bold = true,
+    },
+    haskellPattern = {
+      italic = true;
+    },
+    haskellPatternVariable = {
+      fg = kanagawa_colors.springViolet2,
+      italic = true,
+    },
+    haskellPragma = {
+      fg = kanagawa_colors.surimiOrange,
+    },
+    haskellTypeVariable = {
+      fg = sakura_types and kanagawa_colors.peachRed or kanagawa_colors.surimiOrange,
+    },
+    haskellType = {
+      fg = sakura_types and kanagawa_colors.sakuraPink or kanagawa_colors.waveRed,
+    },
+    haskellWildcardPattern = {
+      fg = kanagawa_colors.fujiGray,
+    },
+    haskellCharacter = {
+      link = "String",
+    },
+    haskellComment = {
+      link = "Comment",
+    },
+    haskellField = {
+      link = "Identifier",
+    },
+    haskellNamedWildcardPattern = {
+      link = "haskellWildcardPattern",
+    },
+    haskellNumber = {
+      link = "haskellConstructor",
+    },
+    haskellQuasiquote = {
+      link = "haskellOperator",
+    },
+    haskellQuasiquoteBody = {
+      link = "String",
+    },
+    haskellString = {
+      link = "String",
+    },
+  },
+}
+
 vim.cmd("colorscheme kanagawa")
 
--- require("gruvbox").setup({
---   undercurl = true,
---   underline = true,
---   bold = true,
---   italic = true,
---   strikethrough = true,
---   invert_selection = false,
---   invert_signs = false,
---   invert_tabline = false,
---   invert_intend_guides = false,
---   inverse = true, -- invert background for search, diffs, statuslines and errors
---   contrast = "", -- can be "hard", "soft" or empty string
---   overrides = {},
--- })
--- vim.cmd([[colorscheme gruvbox]])
+require("nvim-treesitter.highlight").set_custom_captures {
+  ["haskell.bracket"] = "haskellBracket",
+  ["haskell.character"] = "haskellCharacter",
+  ["haskell.comment"] = "haskellComment",
+  ["haskell.constraint"] = "haskellConstraint",
+  ["haskell.constructor"] = "haskellConstructor",
+  ["haskell.declaration"] = "haskellDeclaration",
+  ["haskell.definition"] = "haskellDefinition",
+  ["haskell.field"] = "haskellField",
+  ["haskell.import.all"] = "haskellImportAll",
+  ["haskell.keyword"] = "haskellKeyword",
+  ["haskell.namespace"] = "haskellNamespace",
+  ["haskell.number"] = "haskellNumber",
+  ["haskell.operator"] = "haskellOperator",
+  ["haskell.pattern"] = "haskellPattern",
+  ["haskell.pattern.variable"] = "haskellPatternVariable",
+  ["haskell.pattern.wildcard"] = "haskellWildcardPattern",
+  ["haskell.pattern.wildcard.named"] = "haskellNamedWildcardPattern",
+  ["haskell.pragma"] = "haskellPragma",
+  ["haskell.quasiquote"] = "haskellQuasiquote",
+  ["haskell.quasiquote.body"] = "haskellQuasiquoteBody",
+  ["haskell.string"] = "haskellString",
+  ["haskell.type"] = "haskellType",
+  ["haskell.type.variable"] = "haskellTypeVariable",
+}
 
 require('Comment').setup()
 
