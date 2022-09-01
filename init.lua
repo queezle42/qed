@@ -343,7 +343,7 @@ nvim_lsp.rust_analyzer.setup  {
         },
       },
       procMacro = {
-        enable = true
+        enable = true,
       },
     },
   },
