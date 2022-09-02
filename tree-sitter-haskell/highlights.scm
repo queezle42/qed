@@ -154,6 +154,8 @@
 ;;; Expressions
 
 (exp_name (variable) @haskell.expression.variable)
+(exp_name (variable) @haskell.expression.variable)
+(exp_name (qualified_variable (variable) @haskell.expression.variable))
 
 ;;; End of expressions section
 
