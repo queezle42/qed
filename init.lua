@@ -7,9 +7,6 @@ require("kanagawa").setup {
     italic = false,
   },
   overrides = {
-    haskellBracket = {
-      fg = kanagawa_colors.fujiWhite,
-    },
     haskellConstraint = {
       fg = kanagawa_colors.waveRed,
       italic = true,
@@ -24,6 +21,9 @@ require("kanagawa").setup {
     haskellDefinition = {
       fg = kanagawa_colors.crystalBlue,
     },
+    haskellExpressionVariable = {
+      fg = kanagawa_colors.fujiWhite,
+    },
     haskellImportAll = {
       fg = kanagawa_colors.surimiOrange,
     },
@@ -34,16 +34,7 @@ require("kanagawa").setup {
       fg = kanagawa_colors.boatYellow2,
     },
     haskellOperator = {
-      -- Darker
-      -- fg = "#CF98EB",
-      --
-      -- My current preference
-      fg = "#C3A3DF",
-
-      -- Lighter
-      -- fg = "#CDAFE7",
-
-      -- bold = true,
+      fg = kanagawa_colors.sakuraPink,
     },
     haskellPattern = {
       italic = true;
@@ -54,6 +45,9 @@ require("kanagawa").setup {
     },
     haskellPragma = {
       fg = kanagawa_colors.surimiOrange,
+    },
+    haskellPunctuation = {
+      fg = kanagawa_colors.springViolet2,
     },
     haskellTypeVariable = {
       fg = sakura_types and kanagawa_colors.peachRed or kanagawa_colors.surimiOrange,
@@ -88,19 +82,28 @@ require("kanagawa").setup {
     haskellString = {
       link = "String",
     },
+    haskellLambda = {
+      link = "haskellPunctuation",
+    },
+    haskellBindStatement = {
+      link = "haskellPunctuation",
+    },
+    haskellTypeApplication = {
+      link = "haskellPunctuation",
+    },
   },
 }
 
 vim.cmd("colorscheme kanagawa")
 
 require("nvim-treesitter.highlight").set_custom_captures {
-  ["haskell.bracket"] = "haskellBracket",
   ["haskell.character"] = "haskellCharacter",
   ["haskell.comment"] = "haskellComment",
   ["haskell.constraint"] = "haskellConstraint",
   ["haskell.constructor"] = "haskellConstructor",
   ["haskell.declaration"] = "haskellDeclaration",
   ["haskell.definition"] = "haskellDefinition",
+  ["haskell.expression.variable"] = "haskellExpressionVariable",
   ["haskell.field"] = "haskellField",
   ["haskell.import.all"] = "haskellImportAll",
   ["haskell.keyword"] = "haskellKeyword",
@@ -112,6 +115,10 @@ require("nvim-treesitter.highlight").set_custom_captures {
   ["haskell.pattern.wildcard"] = "haskellWildcardPattern",
   ["haskell.pattern.wildcard.named"] = "haskellNamedWildcardPattern",
   ["haskell.pragma"] = "haskellPragma",
+  ["haskell.punctuation"] = "haskellPunctuation",
+  ["haskell.punctuation.lambda"] = "haskellLambda",
+  ["haskell.punctuation.bind"] = "haskellBindStatement",
+  ["haskell.punctuation.apply"] = "haskellTypeApplication",
   ["haskell.quasiquote"] = "haskellQuasiquote",
   ["haskell.quasiquote.body"] = "haskellQuasiquoteBody",
   ["haskell.string"] = "haskellString",

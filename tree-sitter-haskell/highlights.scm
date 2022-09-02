@@ -2,36 +2,60 @@
 (constraint) @haskell.constraint
 
 [
+  "::"
+  ";"
+  "="
+  "=>"
+  "|"
+  (comma)
+  ;; Used to highlight the dot following an forall as an operator.
+  ;; FIXME This should be fixed in the grammar since it applies operator styles to the whole forall expression.
+  (forall)
+] @haskell.punctuation
+
+(fun) @haskell.punctuation.fun
+
+"<-" @haskell.punctuation.bind
+
+"@" @haskell.punctuation.apply
+
+;; Used to highlight `\` and `->` in a lambda.
+;; FIXME This should be fixed in the grammar since it applies the punctuation style to the whole lambda expression.
+(exp_lambda) @haskell.punctuation.lambda
+
+;; Used to highlight `\` in a `\case`
+;; FIXME This should be fixed in the grammar since it applies the punctuation style to the whole lambda case
+(exp_lambda_case) @haskell.punctuation.lambda
+
+;; Used to highlight `'` in a promoted data kind
+;; FIXME This should be fixed in the grammar since it applies the punctuation style to the whole type
+(exp_lambda_case) @haskell.punctuation.promote
+
+"\case" @haskell.punctuation.lambda
+
+[
   "("
   ")"
-  ";"
   "["
   "]"
   "{"
   "}"
   (comma)
-] @haskell.bracket
-
-[
-  "->"
-  "::"
-  "<-"
-  "="
-  "=>"
-  "@"
-  "\\"
-  ;; exp_infix (infix operator) does not expose a way to tag the backticks, so the highlight has to be fixed here.
-  ;; FIXME This should be fixed in the grammar - a single backtick should not be an operators
-  "`"
-  "|"
-  (constructor_operator)
-  ;; Used to highlight the dot following an forall as an operator.
-  ;; FIXME This should be fixed in the grammar since it applies operator styles to the whole forall expression.
-  (forall)
-  (operator)
   ;; Used to highlight the dot separating module names (e.g. in an import).
   ;; FIXME This should be fixed in the grammar since it applies operator styles to the whole forall expression.
   (qualified_module)
+] @haskell.punctuation.bracket
+
+;; Used to highlight `->` in a case expression
+;; FIXME This should be fixed in the grammar since it applies the punctuation style to the whole case
+(alts) @haskell.punctuation
+
+[
+  ;; exp_infix (infix operator) does not expose a way to tag the backticks, so the highlight has to be fixed here.
+  ;; FIXME This should be fixed in the grammar - a single backtick should not be an operators
+  "`"
+  (constructor_operator)
+  (operator)
   (tycon_arrow)
   (type_operator)
   (wildcard)
@@ -125,6 +149,13 @@
   (#match? @haskell.pattern.wildcard.named "^_.*"))
 
 ;;; End of pattern section
+
+
+;;; Expressions
+
+(exp_name (variable) @haskell.expression.variable)
+
+;;; End of expressions section
 
 
 (constructor) @haskell.constructor
