@@ -48,8 +48,11 @@ set clipboard=unnamed
 " Wrap at word boundaries instead of splitting words at the end of the line.
 set linebreak
 
-" Set colorcolumn to nudge me to stay below 100 characters per line
-set colorcolumn=101
+" Set colorcolumn as a hint to stay within 80 characters per line.
+" Other limits might be useful for personal projects, but since this is so
+" widely used, 80 is a good default.
+" TODO Reading a project-wide override from a file would be useful.
+set colorcolumn=81
 
 " Shows the effects of a command incrementally, as you type. Also shows partial off-screen results in a preview window.
 set inccommand=split
