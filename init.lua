@@ -342,27 +342,25 @@ vim.diagnostic.config({
   signs = false,
 })
 
-nvim_lsp.hls.setup  {
-  on_attach = on_attach,
-  capabilities = capabilities,
+local lsp_servers = {
+  'hls',
+  'rnix',
+  'pylsp',
+  'clangd',
+  'gdscript',
 }
-nvim_lsp.rnix.setup  {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-nvim_lsp.pylsp.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
+for _, lsp_server in ipairs(lsp_servers) do
+  nvim_lsp[lsp_server].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end
+
 nvim_lsp.sumneko_lua.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
   }
-}
-nvim_lsp.clangd.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
 }
 nvim_lsp.rust_analyzer.setup  {
   on_attach = on_attach,
@@ -379,10 +377,6 @@ nvim_lsp.rust_analyzer.setup  {
       },
     },
   },
-}
-nvim_lsp.gdscript.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
 }
 
 local lsp_lines = require("lsp_lines")
