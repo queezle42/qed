@@ -305,11 +305,11 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 local nvim_lsp = require('lspconfig')
 
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+local noremap_silent = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, noremap_silent)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, noremap_silent)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, noremap_silent)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, noremap_silent)
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
@@ -425,6 +425,7 @@ require'nvim-treesitter.configs'.setup {
 
 require("twilight").setup {}
 
+
 require("bufferline").setup {
   highlights = {
     buffer_selected = {
@@ -432,6 +433,19 @@ require("bufferline").setup {
     },
   };
 }
+-- Goto buffer based on visible position in bufferline (like Alt-<#n> in browsers)
+vim.keymap.set('n', '<A-1>', '<Cmd>BufferLineGoToBuffer 1<CR>', noremap_silent)
+vim.keymap.set('n', '<A-2>', '<Cmd>BufferLineGoToBuffer 2<CR>', noremap_silent)
+vim.keymap.set('n', '<A-3>', '<Cmd>BufferLineGoToBuffer 3<CR>', noremap_silent)
+vim.keymap.set('n', '<A-4>', '<Cmd>BufferLineGoToBuffer 4<CR>', noremap_silent)
+vim.keymap.set('n', '<A-5>', '<Cmd>BufferLineGoToBuffer 5<CR>', noremap_silent)
+vim.keymap.set('n', '<A-6>', '<Cmd>BufferLineGoToBuffer 6<CR>', noremap_silent)
+vim.keymap.set('n', '<A-7>', '<Cmd>BufferLineGoToBuffer 7<CR>', noremap_silent)
+vim.keymap.set('n', '<A-8>', '<Cmd>BufferLineGoToBuffer 8<CR>', noremap_silent)
+vim.keymap.set('n', '<A-9>', '<Cmd>BufferLineGoToBuffer 9<CR>', noremap_silent)
+-- Goto last visible buffer
+vim.keymap.set('n', '<A-0>', '<Cmd>BufferLineGoToBuffer -1<CR>', noremap_silent)
+
 
 -- For a future release
 -- require('illuminate').configure({
