@@ -136,6 +136,10 @@ pkgs.neovim.override {
         ))
         playground
 
+        # Highlight long lines
+        # TODO Not packaged in nixpkgs
+        #overlength-nvim
+
         # treesitter-based dimming of inactive code
         twilight-nvim
 

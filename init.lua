@@ -126,6 +126,13 @@ require("nvim-treesitter.highlight").set_custom_captures {
   ["haskell.type.variable"] = "haskellTypeVariable",
 }
 
+-- TODO Not packaged in nixpkgs
+-- require('overlength').setup {
+--   bg = kanagawa_colors.sumiInk2,
+--   -- use `textwidth` if not zero, 80 characters otherwise
+--   textwidth_mode = 1,
+-- }
+
 require('Comment').setup()
 
 require('lualine').setup {
