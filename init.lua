@@ -338,6 +338,8 @@ end
 vim.diagnostic.config({
   virtual_text = false,
   virtual_lines = false,
+  -- Signs overwrite git status and are redundant with underlines
+  signs = false,
 })
 
 nvim_lsp.hls.setup  {
