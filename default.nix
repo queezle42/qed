@@ -87,11 +87,12 @@ pkgs.neovim.override {
 
         # neovim native language server support
         nvim-lspconfig
-        trouble-nvim
 
         # rust cargo crate support
         crates-nvim
 
+        # Diagnostics UI
+        trouble-nvim
         lsp_lines-nvim
 
         # Show lsp status and log in the corner
@@ -162,6 +163,7 @@ pkgs.neovim.override {
         lualine-nvim
 
         bufferline-nvim
+        bufdelete-nvim
 
         # Nix syntax highlighting
         vim-nix

@@ -126,6 +126,7 @@ require("nvim-treesitter.highlight").set_custom_captures {
   ["haskell.type.variable"] = "haskellTypeVariable",
 }
 
+
 -- TODO Not packaged in nixpkgs
 -- require('overlength').setup {
 --   bg = kanagawa_colors.sumiInk2,
@@ -427,7 +428,19 @@ require'nvim-treesitter.configs'.setup {
 require("twilight").setup {}
 
 
+local bufdelete = require("bufdelete")
+
+local close_buffer = function(bufnum)
+  bufdelete.bufdelete(bufnum, true)
+end
+
+
 require("bufferline").setup {
+  options = {
+    close_command = close_buffer,
+    right_mouse_command = close_buffer,
+    diagnostics = "nvim_lsp",
+  },
   highlights = {
     buffer_selected = {
         italic = false,
