@@ -156,8 +156,9 @@ pkgs.neovim.override {
         #vim-gitgutter
         gitsigns-nvim
 
-        # NERDTree
-        nerdtree
+        nvim-web-devicons
+
+        nvim-tree-lua
 
         # Better status bar
         lualine-nvim

@@ -439,7 +439,6 @@ require("bufferline").setup {
   options = {
     close_command = close_buffer,
     right_mouse_command = close_buffer,
-    diagnostics = "nvim_lsp",
   },
   highlights = {
     buffer_selected = {
@@ -470,3 +469,20 @@ vim.keymap.set('n', '<A-0>', '<Cmd>BufferLineGoToBuffer -1<CR>', noremap_silent)
 require("which-key").setup {}
 
 require("gitsigns").setup {}
+
+require("nvim-tree").setup {
+  hijack_netrw = false,
+  root_dirs = {},
+  sync_root_with_cwd = false,
+  renderer = {
+    -- "Display node whose name length is wider than the width of nvim-tree window in floating window."
+    full_name = true,
+    -- TODO
+    special_files = { "flake.nix", "Cargo.toml", "Makefile", "README.md", "readme.md" },
+  },
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    },
+  },
+}

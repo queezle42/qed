@@ -86,15 +86,8 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
-" NERDTree
-" Show hidden files by default
-let g:NERDTreeShowHidden = 1
-" Automaticaly close nvim if NERDTree is only thing left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" Toggle with Alt-b
-nnoremap <a-b> <Cmd>NERDTreeToggle<CR>
-" Project view
-nnoremap <Leader>p <Cmd>NERDTreeToggle<CR>
+" "Project view"
+nnoremap <Leader>p <Cmd>NvimTreeFocus<CR>
 
 let g:highlightedyank_highlight_duration = 200
 
