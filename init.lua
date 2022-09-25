@@ -140,7 +140,8 @@ require('lualine').setup {
   options = {
     icons_enabled = true,
     theme = 'auto',
-    component_separators = { left = '', right = ''},
+    component_separators = '',
+    --component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {
       statusline = {},
@@ -156,16 +157,26 @@ require('lualine').setup {
     }
   },
   sections = {
-    lualine_a = {'mode'},
+    lualine_a = {
+      'mode',
+    },
     lualine_b = {
       'branch',
       'diff',
+    },
+    lualine_c = {
+      {
+        'filename',
+        -- TODO add when neovim 0.8 is released
+        --on_click = function (args)
+        --  vim.cmd('NvimTreeFocus')
+        --end,
+      },
       {
         'diagnostics',
         sources = { 'nvim_workspace_diagnostic' },
-      }
+      },
     },
-    lualine_c = {'filename'},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
@@ -181,7 +192,13 @@ require('lualine').setup {
   tabline = {},
   winbar = {},
   inactive_winbar = {},
-  extensions = {}
+  extensions = {
+    'nvim-tree',
+    'man',
+    --'mundo',
+    --'fugitive',
+    --'nvim-dap-ui',
+  },
 }
 
 
