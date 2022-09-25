@@ -451,10 +451,15 @@ local close_buffer = function(bufnum)
   bufdelete.bufdelete(bufnum, true)
 end
 
+local close_current_buffer = function()
+  bufdelete.bufdelete(0, true)
+end
+
 
 require("bufferline").setup {
   options = {
     close_command = close_buffer,
+    middle_mouse_command = close_buffer,
     right_mouse_command = close_buffer,
     offsets = {
       {
@@ -483,6 +488,8 @@ vim.keymap.set('n', '<A-8>', '<Cmd>BufferLineGoToBuffer 8<CR>', noremap_silent)
 vim.keymap.set('n', '<A-9>', '<Cmd>BufferLineGoToBuffer 9<CR>', noremap_silent)
 -- Goto last visible buffer
 vim.keymap.set('n', '<A-0>', '<Cmd>BufferLineGoToBuffer -1<CR>', noremap_silent)
+-- C-w is mapped to the window prefix, but A-w is close enough
+vim.keymap.set('n', '<A-w>', close_current_buffer, noremap_silent)
 
 
 -- For a future release
