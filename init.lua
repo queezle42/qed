@@ -517,4 +517,7 @@ require("nvim-tree").setup {
       quit_on_open = true,
     },
   },
+  filters = {
+    custom = { "^.git$" },
+  },
 }
