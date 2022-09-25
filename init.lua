@@ -456,12 +456,20 @@ require("bufferline").setup {
   options = {
     close_command = close_buffer,
     right_mouse_command = close_buffer,
+    offsets = {
+      {
+        filetype = "NvimTree",
+        text = "  nvim-tree",
+        highlight = "Directory",
+        text_align = "left"
+      },
+    },
   },
   highlights = {
     buffer_selected = {
         italic = false,
     },
-  };
+  },
 }
 -- Goto buffer based on visible position in bufferline (like Alt-<#n> in browsers)
 vim.keymap.set('n', '<A-1>', '<Cmd>BufferLineGoToBuffer 1<CR>', noremap_silent)
