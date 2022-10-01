@@ -167,10 +167,9 @@ require('lualine').setup {
     lualine_c = {
       {
         'filename',
-        -- TODO add when neovim 0.8 is released
-        --on_click = function (args)
-        --  vim.cmd('NvimTreeFocus')
-        --end,
+        on_click = function (args)
+          vim.cmd('NvimTreeFocus')
+        end,
       },
       {
         'diagnostics',
