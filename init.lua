@@ -324,11 +324,13 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 local nvim_lsp = require('lspconfig')
 
-local noremap_silent = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, noremap_silent)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, noremap_silent)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, noremap_silent)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, noremap_silent)
+-- vim.keymap.set is not recursive by default ('noremap' is ignored).
+-- Use 'remap' option if recursive bindings are required.
+local silent = { silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, silent)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, silent)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, silent)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, silent)
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
@@ -336,7 +338,7 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { silent=true, buffer=bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -477,19 +479,19 @@ require("bufferline").setup {
   },
 }
 -- Goto buffer based on visible position in bufferline (like Alt-<#n> in browsers)
-vim.keymap.set('n', '<A-1>', '<Cmd>BufferLineGoToBuffer 1<CR>', noremap_silent)
-vim.keymap.set('n', '<A-2>', '<Cmd>BufferLineGoToBuffer 2<CR>', noremap_silent)
-vim.keymap.set('n', '<A-3>', '<Cmd>BufferLineGoToBuffer 3<CR>', noremap_silent)
-vim.keymap.set('n', '<A-4>', '<Cmd>BufferLineGoToBuffer 4<CR>', noremap_silent)
-vim.keymap.set('n', '<A-5>', '<Cmd>BufferLineGoToBuffer 5<CR>', noremap_silent)
-vim.keymap.set('n', '<A-6>', '<Cmd>BufferLineGoToBuffer 6<CR>', noremap_silent)
-vim.keymap.set('n', '<A-7>', '<Cmd>BufferLineGoToBuffer 7<CR>', noremap_silent)
-vim.keymap.set('n', '<A-8>', '<Cmd>BufferLineGoToBuffer 8<CR>', noremap_silent)
-vim.keymap.set('n', '<A-9>', '<Cmd>BufferLineGoToBuffer 9<CR>', noremap_silent)
+vim.keymap.set('n', '<A-1>', '<Cmd>BufferLineGoToBuffer 1<CR>', silent)
+vim.keymap.set('n', '<A-2>', '<Cmd>BufferLineGoToBuffer 2<CR>', silent)
+vim.keymap.set('n', '<A-3>', '<Cmd>BufferLineGoToBuffer 3<CR>', silent)
+vim.keymap.set('n', '<A-4>', '<Cmd>BufferLineGoToBuffer 4<CR>', silent)
+vim.keymap.set('n', '<A-5>', '<Cmd>BufferLineGoToBuffer 5<CR>', silent)
+vim.keymap.set('n', '<A-6>', '<Cmd>BufferLineGoToBuffer 6<CR>', silent)
+vim.keymap.set('n', '<A-7>', '<Cmd>BufferLineGoToBuffer 7<CR>', silent)
+vim.keymap.set('n', '<A-8>', '<Cmd>BufferLineGoToBuffer 8<CR>', silent)
+vim.keymap.set('n', '<A-9>', '<Cmd>BufferLineGoToBuffer 9<CR>', silent)
 -- Goto last visible buffer
-vim.keymap.set('n', '<A-0>', '<Cmd>BufferLineGoToBuffer -1<CR>', noremap_silent)
+vim.keymap.set('n', '<A-0>', '<Cmd>BufferLineGoToBuffer -1<CR>', silent)
 -- C-w is mapped to the window prefix, but A-w is close enough
-vim.keymap.set('n', '<A-w>', close_current_buffer, noremap_silent)
+vim.keymap.set('n', '<A-w>', close_current_buffer, silent)
 
 
 -- For a future release
