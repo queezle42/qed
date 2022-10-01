@@ -2,7 +2,8 @@
 
 let
   vim-godot = pkgs.vimUtils.buildVimPlugin {
-    name = "vim-godot";
+    pname = "vim-godot";
+    version = "unstable";
     src = pkgs.fetchFromGitHub {
       owner = "habamax";
       repo = "vim-godot";
@@ -10,12 +11,13 @@ let
       sha256 = "sha256-Fvoh4Z1T8yr19kTqg0YG9xHBVibdFyWtIcSFB9TEQ7c=";
     };
   };
-  vim-tidal = pkgs.vimUtils.buildVimPlugin {
-    name = "vim-tidal";
+  vim-tidal = pkgs.vimUtils.buildVimPlugin rec {
+    pname = "vim-tidal";
+    version = "1.4.8";
     src = pkgs.fetchFromGitHub {
       owner = "tidalcycles";
       repo = "vim-tidal";
-      rev = "1.4.8";
+      rev = version;
       sha256 = "sha256-c12v9+s/JspQ9Am291RFI7eg0UAeXGDvJ5lK+7ukOb0=";
     };
     patchPhase = "rm Makefile";
