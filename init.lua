@@ -365,7 +365,7 @@ vim.diagnostic.config({
 local lsp_servers = {
   'hls',
   'rnix',
-  'pylsp',
+  'pyright',
   'clangd',
   'gdscript',
 }
