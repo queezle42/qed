@@ -177,6 +177,9 @@ pkgs.neovim.override {
         # Godot
         vim-godot
 
+        # GLSL shader (.glsl, .frag, .vert, ...)
+        vim-glsl
+
         # music livecoding
         vim-tidal
       ] ++ extraStartPlugins;
