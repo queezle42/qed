@@ -96,35 +96,33 @@ require("kanagawa").setup {
 
 vim.cmd("colorscheme kanagawa")
 
-require("nvim-treesitter.highlight").set_custom_captures {
-  ["haskell.character"] = "haskellCharacter",
-  ["haskell.comment"] = "haskellComment",
-  ["haskell.constraint"] = "haskellConstraint",
-  ["haskell.constructor"] = "haskellConstructor",
-  ["haskell.declaration"] = "haskellDeclaration",
-  ["haskell.definition"] = "haskellDefinition",
-  ["haskell.expression.variable"] = "haskellExpressionVariable",
-  ["haskell.field"] = "haskellField",
-  ["haskell.import.all"] = "haskellImportAll",
-  ["haskell.keyword"] = "haskellKeyword",
-  ["haskell.namespace"] = "haskellNamespace",
-  ["haskell.number"] = "haskellNumber",
-  ["haskell.operator"] = "haskellOperator",
-  ["haskell.pattern"] = "haskellPattern",
-  ["haskell.pattern.variable"] = "haskellPatternVariable",
-  ["haskell.pattern.wildcard"] = "haskellWildcardPattern",
-  ["haskell.pattern.wildcard.named"] = "haskellNamedWildcardPattern",
-  ["haskell.pragma"] = "haskellPragma",
-  ["haskell.punctuation"] = "haskellPunctuation",
-  ["haskell.punctuation.lambda"] = "haskellLambda",
-  ["haskell.punctuation.bind"] = "haskellBindStatement",
-  ["haskell.punctuation.apply"] = "haskellTypeApplication",
-  ["haskell.quasiquote"] = "haskellQuasiquote",
-  ["haskell.quasiquote.body"] = "haskellQuasiquoteBody",
-  ["haskell.string"] = "haskellString",
-  ["haskell.type"] = "haskellType",
-  ["haskell.type.variable"] = "haskellTypeVariable",
-}
+vim.api.nvim_set_hl(0, "@haskell.character", { link = "haskellCharacter", });
+vim.api.nvim_set_hl(0, "@haskell.comment", { link = "haskellComment", });
+vim.api.nvim_set_hl(0, "@haskell.constraint", { link = "haskellConstraint", });
+vim.api.nvim_set_hl(0, "@haskell.constructor", { link = "haskellConstructor", });
+vim.api.nvim_set_hl(0, "@haskell.declaration", { link = "haskellDeclaration", });
+vim.api.nvim_set_hl(0, "@haskell.definition", { link = "haskellDefinition", });
+vim.api.nvim_set_hl(0, "@haskell.expression.variable", { link = "haskellExpressionVariable", });
+vim.api.nvim_set_hl(0, "@haskell.field", { link = "haskellField", });
+vim.api.nvim_set_hl(0, "@haskell.import.all", { link = "haskellImportAll", });
+vim.api.nvim_set_hl(0, "@haskell.keyword", { link = "haskellKeyword", });
+vim.api.nvim_set_hl(0, "@haskell.namespace", { link = "haskellNamespace", });
+vim.api.nvim_set_hl(0, "@haskell.number", { link = "haskellNumber", });
+vim.api.nvim_set_hl(0, "@haskell.operator", { link = "haskellOperator", });
+vim.api.nvim_set_hl(0, "@haskell.pattern", { link = "haskellPattern", });
+vim.api.nvim_set_hl(0, "@haskell.pattern.variable", { link = "haskellPatternVariable", });
+vim.api.nvim_set_hl(0, "@haskell.pattern.wildcard", { link = "haskellWildcardPattern", });
+vim.api.nvim_set_hl(0, "@haskell.pattern.wildcard.named", { link = "haskellNamedWildcardPattern", });
+vim.api.nvim_set_hl(0, "@haskell.pragma", { link = "haskellPragma", });
+vim.api.nvim_set_hl(0, "@haskell.punctuation", { link = "haskellPunctuation", });
+vim.api.nvim_set_hl(0, "@haskell.punctuation.lambda", { link = "haskellLambda", });
+vim.api.nvim_set_hl(0, "@haskell.punctuation.bind", { link = "haskellBindStatement", });
+vim.api.nvim_set_hl(0, "@haskell.punctuation.apply", { link = "haskellTypeApplication", });
+vim.api.nvim_set_hl(0, "@haskell.quasiquote", { link = "haskellQuasiquote", });
+vim.api.nvim_set_hl(0, "@haskell.quasiquote.body", { link = "haskellQuasiquoteBody", });
+vim.api.nvim_set_hl(0, "@haskell.string", { link = "haskellString", });
+vim.api.nvim_set_hl(0, "@haskell.type", { link = "haskellType", });
+vim.api.nvim_set_hl(0, "@haskell.type.variable", { link = "haskellTypeVariable", });
 
 
 -- TODO Not packaged in nixpkgs
