@@ -171,6 +171,9 @@ pkgs.neovim.override {
         # Nix syntax highlighting
         vim-nix
 
+        # Web development
+        vim-svelte
+
         # Haskell syntax highlighting
         #haskell-vim
 

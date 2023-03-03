@@ -376,6 +376,8 @@ local lsp_servers = {
   'pyright',
   'clangd',
   'gdscript',
+  'tsserver',
+  'svelte',
 }
 for _, lsp_server in ipairs(lsp_servers) do
   nvim_lsp[lsp_server].setup {
