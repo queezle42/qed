@@ -50,9 +50,6 @@ pkgs.neovim.override {
         gruvbox-community
         tokyonight-nvim
 
-        # Distraction-free writing in Vim.
-        goyo-vim
-
         # Basics (VSCodeVim compatible)
         # Changes 's<char><char>' to motion that finds the next combination of the given characters (similar to 'f<char>')
         #vim-sneak
