@@ -99,20 +99,6 @@ filetype on
 " Bufferline
 nnoremap <silent> gb <Cmd>BufferLinePick<CR>
 
-" Old language client keybindings
-"  nnoremap <Leader>la <Cmd>call LanguageClient_workspace_applyEdit()<CR>
-"  nnoremap <Leader>lc <Cmd>call LanguageClient#textDocument_definition()<CR>
-"  nnoremap <Leader>ld <Cmd>call LanguageClient#textDocument_definition()<CR>
-"  nnoremap <Leader>le <Cmd>call LanguageClient#explainErrorAtPoint()<CR>
-"  nnoremap <Leader>lf <Cmd>call LanguageClient#textDocument_formatting()<CR>
-"  nnoremap <Leader>lh <Cmd>call LanguageClient#textDocument_hover()<CR>
-"  nnoremap <Leader>lm <Cmd>call LanguageClient_contextMenu()<CR>
-"  nnoremap <Leader>lr <Cmd>call LanguageClient#textDocument_rename()<CR>
-"  nnoremap <Leader>ls <Cmd>call LanguageClient_textDocument_documentSymbol()<CR>
-"  nnoremap <Leader>lt <Cmd>call LanguageClient#textDocument_typeDefinition()<CR>
-"  nnoremap <Leader>lx <Cmd>call LanguageClient#textDocument_references()<CR>
-"  nnoremap <Leader>lq <Cmd>LanguageClientStop<CR><Cmd>LanguageClientStart<CR>
-
 nnoremap <Leader>t <Cmd>TroubleToggle<CR>
 
 " <Leader>n clears the last search highlighting.
