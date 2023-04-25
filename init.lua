@@ -124,6 +124,7 @@ vim.api.nvim_set_hl(0, "@haskell.string", { link = "haskellString", });
 vim.api.nvim_set_hl(0, "@haskell.type", { link = "haskellType", });
 vim.api.nvim_set_hl(0, "@haskell.type.variable", { link = "haskellTypeVariable", });
 
+require('leap').add_default_mappings()
 
 -- TODO Not packaged in nixpkgs
 -- require('overlength').setup {

@@ -50,11 +50,8 @@ pkgs.neovim.override {
         gruvbox-community
         tokyonight-nvim
 
-        # Basics (VSCodeVim compatible)
-        # Changes 's<char><char>' to motion that finds the next combination of the given characters (similar to 'f<char>')
-        #vim-sneak
-        # sneak + easymotion hybrid
-        lightspeed-nvim
+        # 's' jump (sneak with addidional label / lightspeed replacement)
+        leap-nvim
         # Various commands that add, change and remove brackets, quotes and tags.
         vim-surround
         # Jump to any location by showing helper marks.
