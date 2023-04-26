@@ -22,6 +22,16 @@ let
     };
     patchPhase = "rm Makefile";
   };
+  leap-spooky-nvim = pkgs.vimUtils.buildVimPlugin rec {
+    pname = "leap-spooky-nvim";
+    version = "unstable";
+    src = pkgs.fetchFromGitHub {
+      owner = "ggandor";
+      repo = "leap-spooky.nvim";
+      rev = "3e940464b1728b22052dd565accc949c0b02b025";
+      sha256 = "sha256-mkbfGTSLCB2Srjjk3FfacP7HazxwSW0F/7AOfp/vv/g=";
+    };
+  };
 in
 pkgs.neovim.override {
   configure = {
@@ -52,6 +62,7 @@ pkgs.neovim.override {
 
         # 's' jump (sneak with addidional label / lightspeed replacement)
         leap-nvim
+        leap-spooky-nvim
         # Various commands that add, change and remove brackets, quotes and tags.
         vim-surround
         # Jump to any location by showing helper marks.

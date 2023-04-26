@@ -125,6 +125,9 @@ vim.api.nvim_set_hl(0, "@haskell.type", { link = "haskellType", });
 vim.api.nvim_set_hl(0, "@haskell.type.variable", { link = "haskellTypeVariable", });
 
 require('leap').add_default_mappings()
+require('leap-spooky').setup {
+  paste_on_remote_yank = true,
+}
 
 -- TODO Not packaged in nixpkgs
 -- require('overlength').setup {
