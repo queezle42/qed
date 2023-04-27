@@ -343,6 +343,9 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, silent)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, silent)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, silent)
 
+vim.keymap.set('c', '<C-j>', '<Down>');
+vim.keymap.set('c', '<C-k>', '<Up>');
+
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
