@@ -17,5 +17,7 @@ jobs:
         with:
           name: qed
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          skipPush: true
       - run: nix --print-build-logs build .
       - run: cachix pin qed main result --keep-revisions 3
+        if: github.event_name == 'push' && github.repository == 'queezle42/qed' && github.ref == 'refs/heads/main'
