@@ -1,4 +1,3 @@
-local kanagawa_colors = require("kanagawa.colors").setup()
 
 local sakura_types = false;
 
@@ -6,123 +5,125 @@ require("kanagawa").setup {
   keywordStyle = {
     italic = false,
   },
-  overrides = {
-    haskellConstraint = {
-      fg = kanagawa_colors.waveRed,
-      italic = true,
-    },
-    haskellConstructor = {
-      fg = kanagawa_colors.waveAqua2,
-    },
-    haskellDeclaration = {
-      fg = kanagawa_colors.crystalBlue,
-      bold = true,
-    },
-    haskellDefinition = {
-      fg = kanagawa_colors.crystalBlue,
-    },
-    haskellExpressionVariable = {
-      fg = kanagawa_colors.fujiWhite,
-    },
-    haskellImportAll = {
-      fg = kanagawa_colors.surimiOrange,
-    },
-    haskellKeyword = {
-      fg = kanagawa_colors.oniViolet,
-    },
-    haskellNamespace = {
-      fg = kanagawa_colors.boatYellow2,
-    },
-    haskellOperator = {
-      fg = kanagawa_colors.sakuraPink,
-    },
-    haskellPattern = {
-      italic = true;
-    },
-    haskellPatternVariable = {
-      fg = kanagawa_colors.springViolet2,
-      italic = true,
-    },
-    haskellPragma = {
-      fg = kanagawa_colors.surimiOrange,
-    },
-    haskellPunctuation = {
-      fg = kanagawa_colors.springViolet2,
-    },
-    haskellTypeVariable = {
-      fg = sakura_types and kanagawa_colors.peachRed or kanagawa_colors.surimiOrange,
-    },
-    haskellType = {
-      fg = sakura_types and kanagawa_colors.sakuraPink or kanagawa_colors.waveRed,
-    },
-    haskellWildcardPattern = {
-      fg = kanagawa_colors.fujiGray,
-    },
-    haskellCharacter = {
-      link = "String",
-    },
-    haskellComment = {
-      link = "Comment",
-    },
-    haskellField = {
-      link = "Identifier",
-    },
-    haskellNamedWildcardPattern = {
-      link = "haskellWildcardPattern",
-    },
-    haskellNumber = {
-      link = "haskellConstructor",
-    },
-    haskellQuasiquote = {
-      link = "haskellOperator",
-    },
-    haskellQuasiquoteBody = {
-      link = "String",
-    },
-    haskellString = {
-      link = "String",
-    },
-    haskellLambda = {
-      link = "haskellPunctuation",
-    },
-    haskellBindStatement = {
-      link = "haskellPunctuation",
-    },
-    haskellTypeApplication = {
-      link = "haskellPunctuation",
-    },
-  },
+  overrides = function(colors)
+    return {
+      haskellConstraint = {
+        fg = colors.palette.waveRed,
+        italic = true,
+      },
+      haskellConstructor = {
+        fg = colors.palette.waveAqua2,
+      },
+      haskellDeclaration = {
+        fg = colors.palette.crystalBlue,
+        bold = true,
+      },
+      haskellDefinition = {
+        fg = colors.palette.crystalBlue,
+      },
+      haskellExpressionVariable = {
+        fg = colors.palette.fujiWhite,
+      },
+      haskellImportAll = {
+        fg = colors.palette.surimiOrange,
+      },
+      haskellKeyword = {
+        fg = colors.palette.oniViolet,
+      },
+      haskellNamespace = {
+        fg = colors.palette.boatYellow2,
+      },
+      haskellOperator = {
+        fg = colors.palette.sakuraPink,
+      },
+      haskellPattern = {
+        italic = true;
+      },
+      haskellPatternVariable = {
+        fg = colors.palette.springViolet2,
+        italic = true,
+      },
+      haskellPragma = {
+        fg = colors.palette.surimiOrange,
+      },
+      haskellPunctuation = {
+        fg = colors.palette.springViolet2,
+      },
+      haskellTypeVariable = {
+        fg = sakura_types and colors.palette.peachRed or colors.palette.surimiOrange,
+      },
+      haskellType = {
+        fg = sakura_types and colors.palette.sakuraPink or colors.palette.waveRed,
+      },
+      haskellWildcardPattern = {
+        fg = colors.palette.fujiGray,
+      },
+      haskellCharacter = {
+        link = "String",
+      },
+      haskellComment = {
+        link = "Comment",
+      },
+      haskellField = {
+        link = "Identifier",
+      },
+      haskellNamedWildcardPattern = {
+        link = "haskellWildcardPattern",
+      },
+      haskellNumber = {
+        link = "haskellConstructor",
+      },
+      haskellQuasiquote = {
+        link = "haskellOperator",
+      },
+      haskellQuasiquoteBody = {
+        link = "String",
+      },
+      haskellString = {
+        link = "String",
+      },
+      haskellLambda = {
+        link = "haskellPunctuation",
+      },
+      haskellBindStatement = {
+        link = "haskellPunctuation",
+      },
+      haskellTypeApplication = {
+        link = "haskellPunctuation",
+      },
+      ["@haskell.character"] = { link = "haskellCharacter", },
+      ["@haskell.comment"] = { link = "haskellComment", },
+      ["@haskell.constraint"] = { link = "haskellConstraint", },
+      ["@haskell.constructor"] = { link = "haskellConstructor", },
+      ["@haskell.declaration"] = { link = "haskellDeclaration", },
+      ["@haskell.definition"] = { link = "haskellDefinition", },
+      ["@haskell.expression.variable"] = { link = "haskellExpressionVariable", },
+      ["@haskell.field"] = { link = "haskellField", },
+      ["@haskell.import.all"] = { link = "haskellImportAll", },
+      ["@haskell.keyword"] = { link = "haskellKeyword", },
+      ["@haskell.namespace"] = { link = "haskellNamespace", },
+      ["@haskell.number"] = { link = "haskellNumber", },
+      ["@haskell.operator"] = { link = "haskellOperator", },
+      ["@haskell.pattern"] = { link = "haskellPattern", },
+      ["@haskell.pattern.variable"] = { link = "haskellPatternVariable", },
+      ["@haskell.pattern.wildcard"] = { link = "haskellWildcardPattern", },
+      ["@haskell.pattern.wildcard.named"] = { link = "haskellNamedWildcardPattern", },
+      ["@haskell.pragma"] = { link = "haskellPragma", },
+      ["@haskell.punctuation"] = { link = "haskellPunctuation", },
+      ["@haskell.punctuation.lambda"] = { link = "haskellLambda", },
+      ["@haskell.punctuation.bind"] = { link = "haskellBindStatement", },
+      ["@haskell.punctuation.apply"] = { link = "haskellTypeApplication", },
+      ["@haskell.quasiquote"] = { link = "haskellQuasiquote", },
+      ["@haskell.quasiquote.body"] = { link = "haskellQuasiquoteBody", },
+      ["@haskell.string"] = { link = "haskellString", },
+      ["@haskell.type"] = { link = "haskellType", },
+      ["@haskell.type.variable"] = { link = "haskellTypeVariable", },
+    }
+  end,
 }
 
 vim.cmd("colorscheme kanagawa")
 
-vim.api.nvim_set_hl(0, "@haskell.character", { link = "haskellCharacter", });
-vim.api.nvim_set_hl(0, "@haskell.comment", { link = "haskellComment", });
-vim.api.nvim_set_hl(0, "@haskell.constraint", { link = "haskellConstraint", });
-vim.api.nvim_set_hl(0, "@haskell.constructor", { link = "haskellConstructor", });
-vim.api.nvim_set_hl(0, "@haskell.declaration", { link = "haskellDeclaration", });
-vim.api.nvim_set_hl(0, "@haskell.definition", { link = "haskellDefinition", });
-vim.api.nvim_set_hl(0, "@haskell.expression.variable", { link = "haskellExpressionVariable", });
-vim.api.nvim_set_hl(0, "@haskell.field", { link = "haskellField", });
-vim.api.nvim_set_hl(0, "@haskell.import.all", { link = "haskellImportAll", });
-vim.api.nvim_set_hl(0, "@haskell.keyword", { link = "haskellKeyword", });
-vim.api.nvim_set_hl(0, "@haskell.namespace", { link = "haskellNamespace", });
-vim.api.nvim_set_hl(0, "@haskell.number", { link = "haskellNumber", });
-vim.api.nvim_set_hl(0, "@haskell.operator", { link = "haskellOperator", });
-vim.api.nvim_set_hl(0, "@haskell.pattern", { link = "haskellPattern", });
-vim.api.nvim_set_hl(0, "@haskell.pattern.variable", { link = "haskellPatternVariable", });
-vim.api.nvim_set_hl(0, "@haskell.pattern.wildcard", { link = "haskellWildcardPattern", });
-vim.api.nvim_set_hl(0, "@haskell.pattern.wildcard.named", { link = "haskellNamedWildcardPattern", });
-vim.api.nvim_set_hl(0, "@haskell.pragma", { link = "haskellPragma", });
-vim.api.nvim_set_hl(0, "@haskell.punctuation", { link = "haskellPunctuation", });
-vim.api.nvim_set_hl(0, "@haskell.punctuation.lambda", { link = "haskellLambda", });
-vim.api.nvim_set_hl(0, "@haskell.punctuation.bind", { link = "haskellBindStatement", });
-vim.api.nvim_set_hl(0, "@haskell.punctuation.apply", { link = "haskellTypeApplication", });
-vim.api.nvim_set_hl(0, "@haskell.quasiquote", { link = "haskellQuasiquote", });
-vim.api.nvim_set_hl(0, "@haskell.quasiquote.body", { link = "haskellQuasiquoteBody", });
-vim.api.nvim_set_hl(0, "@haskell.string", { link = "haskellString", });
-vim.api.nvim_set_hl(0, "@haskell.type", { link = "haskellType", });
-vim.api.nvim_set_hl(0, "@haskell.type.variable", { link = "haskellTypeVariable", });
 
 require('leap').add_default_mappings()
 require('leap-spooky').setup {
@@ -393,7 +394,7 @@ for _, lsp_server in ipairs(lsp_servers) do
   }
 end
 
-nvim_lsp.sumneko_lua.setup {
+nvim_lsp.lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {

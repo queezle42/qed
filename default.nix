@@ -44,7 +44,7 @@ pkgs.neovim.override {
         local haskell_highlight_grammar = haskell_highlight_grammar_file:read('a')
         haskell_highlight_grammar_file:close()
 
-        require("vim.treesitter.query").set_query("haskell", "highlights", haskell_highlight_grammar)
+        vim.treesitter.query.set("haskell", "highlights", haskell_highlight_grammar)
       EOF
 
       ${extraRC}
