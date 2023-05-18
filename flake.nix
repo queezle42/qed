@@ -1,4 +1,7 @@
 {
+  nixConfig.extra-substituters = [ "https://qed.cachix.org" ];
+  nixConfig.extra-trusted-public-keys = [ "qed.cachix.org-1:eScqE90/iRecU5q2AGJgi0LfH3X6yLhpxNZCnhOpX6M=" ];
+
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
   };
