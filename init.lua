@@ -511,6 +511,10 @@ vim.keymap.set('n', '<A-0>', '<Cmd>BufferLineGoToBuffer -1<CR>', silent)
 vim.keymap.set('n', '<A-w>', close_current_buffer, silent)
 
 
+-- Paste from last yanked using <ö>
+vim.keymap.set({'n', 'v'}, 'ö', '"0p')
+
+
 -- For a future release
 -- require('illuminate').configure({
 --   -- delay: delay in milliseconds
