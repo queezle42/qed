@@ -92,8 +92,6 @@ pkgs.neovim.override {
 
         which-key-nvim
 
-        nvim-scrollbar
-
         # neovim native language server support
         nvim-lspconfig
 
