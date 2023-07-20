@@ -120,7 +120,7 @@ end)
 
 local sakura_types = false
 
-require("kanagawa").setup({
+require("kanagawa").setup {
   keywordStyle = {
     italic = false,
   },
@@ -242,27 +242,27 @@ require("kanagawa").setup({
       ["@haskell.type.variable"] = { link = "haskellTypeVariable" },
     }
   end,
-})
+}
 
 vim.cmd("colorscheme kanagawa")
 
 vim.notify = require("notify")
 
 require("leap").add_default_mappings()
-require("leap-spooky").setup({
+require("leap-spooky").setup {
   paste_on_remote_yank = true,
-})
+}
 
-require("overlength").setup({
+require("overlength").setup {
   -- kanagawa sumiInk4
   bg = "#2A2A37",
   -- use `textwidth` if not zero, 80 characters otherwise
   textwidth_mode = 1,
-})
+}
 
 require("Comment").setup()
 
-require("lualine").setup({
+require("lualine").setup {
   options = {
     icons_enabled = true,
     theme = "auto",
@@ -324,7 +324,7 @@ require("lualine").setup({
     --'fugitive',
     --'nvim-dap-ui',
   },
-})
+}
 
 -- Telescope fuzzy finder
 local telescope = require("telescope")
@@ -339,7 +339,7 @@ table.insert(vimgrep_arguments, "--hidden")
 table.insert(vimgrep_arguments, "--glob")
 table.insert(vimgrep_arguments, "!.git/*")
 
-telescope.setup({
+telescope.setup {
   defaults = {
     -- `hidden = true` is not supported in text grep commands.
     vimgrep_arguments = vimgrep_arguments,
@@ -363,12 +363,12 @@ telescope.setup({
   },
   extensions = {
     ["ui-select"] = {
-      require("telescope.themes").get_dropdown({
+      require("telescope.themes").get_dropdown {
         -- even more opts
-      }),
+      },
     },
   },
-})
+}
 
 -- TODO evaluate zf once UTF-8 is supported
 -- (zig finder, the sorting algorithm is an improvement to fzf)
@@ -382,7 +382,7 @@ telescope.load_extension("ui-select")
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
-cmp.setup({
+cmp.setup {
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -392,12 +392,12 @@ cmp.setup({
     -- completion = cmp.config.window.bordered(),
     -- documentation = cmp.config.window.bordered(),
   },
-  mapping = cmp.mapping.preset.insert({
+  mapping = cmp.mapping.preset.insert {
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ["<CR>"] = cmp.mapping.confirm { select = false }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -416,7 +416,7 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-  }),
+  },
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "luasnip" },
@@ -424,7 +424,7 @@ cmp.setup({
     { name = "buffer" },
     { name = "path" },
   }),
-})
+}
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype("gitcommit", {
@@ -465,11 +465,11 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, silent)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, silent)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, silent)
 
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
     -- Enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+    vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -494,12 +494,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-vim.diagnostic.config({
+vim.diagnostic.config {
   virtual_text = false,
   virtual_lines = false,
   -- Signs overwrite git status and are redundant with underlines
   signs = false,
-})
+}
 
 local lsp_servers = {
   "hls",
@@ -511,12 +511,12 @@ local lsp_servers = {
   "svelte",
 }
 for _, lsp_server in ipairs(lsp_servers) do
-  nvim_lsp[lsp_server].setup({
+  nvim_lsp[lsp_server].setup {
     capabilities = capabilities,
-  })
+  }
 end
 
-nvim_lsp.lua_ls.setup({
+nvim_lsp.lua_ls.setup {
   capabilities = capabilities,
   -- TODO current settings are for neovim development. Autodetection would be
   -- required for other projects.
@@ -539,8 +539,8 @@ nvim_lsp.lua_ls.setup({
       },
     },
   },
-})
-nvim_lsp.rust_analyzer.setup({
+}
+nvim_lsp.rust_analyzer.setup {
   capabilities = capabilities,
   settings = {
     ["rust-analyzer"] = {
@@ -554,10 +554,10 @@ nvim_lsp.rust_analyzer.setup({
       },
     },
   },
-})
+}
 
 local null_ls = require("null-ls")
-null_ls.setup({
+null_ls.setup {
   sources = {
     null_ls.builtins.code_actions.gitsigns,
     null_ls.builtins.code_actions.shellcheck,
@@ -565,23 +565,23 @@ null_ls.setup({
     null_ls.builtins.diagnostics.eslint,
     null_ls.builtins.formatting.stylua,
   },
-})
+}
 
 local lsp_lines = require("lsp_lines")
 lsp_lines.setup()
 vim.keymap.set("", "<Leader>v", lsp_lines.toggle, { desc = "Toggle lsp_lines" })
 
-require("fidget").setup({})
+require("fidget").setup {}
 
 require("crates").setup()
 
-require("trouble").setup({
+require("trouble").setup {
   icons = false,
   -- Not required since a bar is used
   padding = false,
-})
+}
 
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter.configs").setup {
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
@@ -604,9 +604,9 @@ require("nvim-treesitter.configs").setup({
     --  show_help = '?',
     --},
   },
-})
+}
 
-require("twilight").setup({})
+require("twilight").setup {}
 
 local bufdelete = require("bufdelete")
 
@@ -619,7 +619,7 @@ local close_current_buffer = function()
 end
 
 local bufferline = require("bufferline")
-bufferline.setup({
+bufferline.setup {
   options = {
     close_command = close_buffer,
     middle_mouse_command = close_buffer,
@@ -638,7 +638,7 @@ bufferline.setup({
       italic = false,
     },
   },
-})
+}
 local go_to_buffer_fn = function(num)
   return function()
     bufferline.go_to(num, true)
@@ -665,11 +665,11 @@ vim.keymap.set("n", "<A-w>", close_current_buffer, silent)
 --   delay = 0,
 -- })
 
-require("which-key").setup({})
+require("which-key").setup {}
 
-require("gitsigns").setup({})
+require("gitsigns").setup {}
 
-require("nvim-tree").setup({
+require("nvim-tree").setup {
   hijack_netrw = false,
   root_dirs = {},
   sync_root_with_cwd = false,
@@ -687,4 +687,4 @@ require("nvim-tree").setup({
   filters = {
     custom = { "^.git$" },
   },
-})
+}
