@@ -88,6 +88,8 @@ pkgs.neovim.override {
         telescope-symbols-nvim
         telescope-fzf-native-nvim
 
+        nvim-notify
+
         #fzfWrapper
         #fzf-vim
 

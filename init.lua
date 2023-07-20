@@ -231,6 +231,8 @@ require("kanagawa").setup {
 vim.cmd("colorscheme kanagawa")
 
 
+vim.notify = require("notify")
+
 require('leap').add_default_mappings()
 require('leap-spooky').setup {
   paste_on_remote_yank = true,
