@@ -56,59 +56,71 @@ vim.opt.showmode = false
 -- Setup completion window for nvim-cmp
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
-
 vim.g.highlightedyank_highlight_duration = 200
 
-
-local silent = { silent=true }
+local silent = { silent = true }
 local remap = { remap = true }
 
 -- Paste from last yanked using <ö>
-vim.keymap.set({'n', 'v'}, 'ö', '"0p')
+vim.keymap.set({ "n", "v" }, "ö", '"0p')
 
 -- Use C-j/C-k to navigate history in the command line
-vim.keymap.set('c', '<C-j>', '<Down>');
-vim.keymap.set('c', '<C-k>', '<Up>');
-
+vim.keymap.set("c", "<C-j>", "<Down>")
+vim.keymap.set("c", "<C-k>", "<Up>")
 
 -- Map 'ü' and '+' to '[' and ']' (fix for german keyboard layout)
-vim.keymap.set('n', 'ü', '[', remap);
-vim.keymap.set('n', '+', ']', remap);
+vim.keymap.set("n", "ü", "[", remap)
+vim.keymap.set("n", "+", "]", remap)
 
 -- Save with Ctrl-S (if file has changed)
-vim.keymap.set('n', '<C-s>', function() vim.cmd("update") end);
+vim.keymap.set("n", "<C-s>", function()
+  vim.cmd("update")
+end)
 
-vim.keymap.set('n', '<C-p>', function() vim.cmd("Telescope find_files") end);
+vim.keymap.set("n", "<C-p>", function()
+  vim.cmd("Telescope find_files")
+end)
 
 -- Use `ALT+{h,j,k,l}` to navigate windows from any mode
-vim.keymap.set('n', '<A-h>', '<C-w>h');
-vim.keymap.set('n', '<A-j>', '<C-w>j');
-vim.keymap.set('n', '<A-k>', '<C-w>k');
-vim.keymap.set('n', '<A-l>', '<C-w>l');
-vim.keymap.set({'i', 't'}, '<A-h>', '<C-\\><C-N><C-w>h');
-vim.keymap.set({'i', 't'}, '<A-j>', '<C-\\><C-N><C-w>j');
-vim.keymap.set({'i', 't'}, '<A-k>', '<C-\\><C-N><C-w>k');
-vim.keymap.set({'i', 't'}, '<A-l>', '<C-\\><C-N><C-w>l');
+vim.keymap.set("n", "<A-h>", "<C-w>h")
+vim.keymap.set("n", "<A-j>", "<C-w>j")
+vim.keymap.set("n", "<A-k>", "<C-w>k")
+vim.keymap.set("n", "<A-l>", "<C-w>l")
+vim.keymap.set({ "i", "t" }, "<A-h>", "<C-\\><C-N><C-w>h")
+vim.keymap.set({ "i", "t" }, "<A-j>", "<C-\\><C-N><C-w>j")
+vim.keymap.set({ "i", "t" }, "<A-k>", "<C-\\><C-N><C-w>k")
+vim.keymap.set({ "i", "t" }, "<A-l>", "<C-\\><C-N><C-w>l")
 
 -- "Project view" - open file tree, chosen to be similar to <C-p> file picker
-vim.keymap.set('n', '<Leader>p', function() vim.cmd("NvimTreeFocus") end);
+vim.keymap.set("n", "<Leader>p", function()
+  vim.cmd("NvimTreeFocus")
+end)
 
 -- Bufferline
-vim.keymap.set('n', 'gb', function() vim.cmd("BufferLinePick") end, silent);
+vim.keymap.set("n", "gb", function()
+  vim.cmd("BufferLinePick")
+end, silent)
 
-vim.keymap.set('n', '<Leader>t', function() vim.cmd("TroubleToggle") end);
+vim.keymap.set("n", "<Leader>t", function()
+  vim.cmd("TroubleToggle")
+end)
 
 -- <Leader>n clears the last search highlighting.
-vim.keymap.set({'n', 'v'}, '<Leader>n', function() vim.cmd("nohlsearch") end);
+vim.keymap.set({ "n", "v" }, "<Leader>n", function()
+  vim.cmd("nohlsearch")
+end)
 
 -- Shortcut to enable spellcheck (requires aspell installation)
-vim.keymap.set('n', '<Leader>s', function() vim.cmd("setlocal spell spelllang=en_us") end);
-vim.keymap.set('n', '<Leader>S', function() vim.cmd("setlocal spell spelllang=de_de") end);
+vim.keymap.set("n", "<Leader>s", function()
+  vim.cmd("setlocal spell spelllang=en_us")
+end)
+vim.keymap.set("n", "<Leader>S", function()
+  vim.cmd("setlocal spell spelllang=de_de")
+end)
 
+local sakura_types = false
 
-local sakura_types = false;
-
-require("kanagawa").setup {
+require("kanagawa").setup({
   keywordStyle = {
     italic = false,
   },
@@ -147,7 +159,7 @@ require("kanagawa").setup {
         fg = colors.palette.sakuraPink,
       },
       haskellPattern = {
-        italic = true;
+        italic = true,
       },
       haskellPatternVariable = {
         fg = colors.palette.springViolet2,
@@ -201,63 +213,62 @@ require("kanagawa").setup {
       haskellTypeApplication = {
         link = "haskellPunctuation",
       },
-      ["@haskell.character"] = { link = "haskellCharacter", },
-      ["@haskell.comment"] = { link = "haskellComment", },
-      ["@haskell.constraint"] = { link = "haskellConstraint", },
-      ["@haskell.constructor"] = { link = "haskellConstructor", },
-      ["@haskell.declaration"] = { link = "haskellDeclaration", },
-      ["@haskell.definition"] = { link = "haskellDefinition", },
-      ["@haskell.expression.variable"] = { link = "haskellExpressionVariable", },
-      ["@haskell.field"] = { link = "haskellField", },
-      ["@haskell.import.all"] = { link = "haskellImportAll", },
-      ["@haskell.keyword"] = { link = "haskellKeyword", },
-      ["@haskell.namespace"] = { link = "haskellNamespace", },
-      ["@haskell.number"] = { link = "haskellNumber", },
-      ["@haskell.operator"] = { link = "haskellOperator", },
-      ["@haskell.pattern"] = { link = "haskellPattern", },
-      ["@haskell.pattern.variable"] = { link = "haskellPatternVariable", },
-      ["@haskell.pattern.wildcard"] = { link = "haskellWildcardPattern", },
-      ["@haskell.pattern.wildcard.named"] = { link = "haskellNamedWildcardPattern", },
-      ["@haskell.pragma"] = { link = "haskellPragma", },
-      ["@haskell.punctuation"] = { link = "haskellPunctuation", },
-      ["@haskell.punctuation.lambda"] = { link = "haskellLambda", },
-      ["@haskell.punctuation.bind"] = { link = "haskellBindStatement", },
-      ["@haskell.punctuation.apply"] = { link = "haskellTypeApplication", },
-      ["@haskell.quasiquote"] = { link = "haskellQuasiquote", },
-      ["@haskell.quasiquote.body"] = { link = "haskellQuasiquoteBody", },
-      ["@haskell.string"] = { link = "haskellString", },
-      ["@haskell.type"] = { link = "haskellType", },
-      ["@haskell.type.variable"] = { link = "haskellTypeVariable", },
+      ["@haskell.character"] = { link = "haskellCharacter" },
+      ["@haskell.comment"] = { link = "haskellComment" },
+      ["@haskell.constraint"] = { link = "haskellConstraint" },
+      ["@haskell.constructor"] = { link = "haskellConstructor" },
+      ["@haskell.declaration"] = { link = "haskellDeclaration" },
+      ["@haskell.definition"] = { link = "haskellDefinition" },
+      ["@haskell.expression.variable"] = { link = "haskellExpressionVariable" },
+      ["@haskell.field"] = { link = "haskellField" },
+      ["@haskell.import.all"] = { link = "haskellImportAll" },
+      ["@haskell.keyword"] = { link = "haskellKeyword" },
+      ["@haskell.namespace"] = { link = "haskellNamespace" },
+      ["@haskell.number"] = { link = "haskellNumber" },
+      ["@haskell.operator"] = { link = "haskellOperator" },
+      ["@haskell.pattern"] = { link = "haskellPattern" },
+      ["@haskell.pattern.variable"] = { link = "haskellPatternVariable" },
+      ["@haskell.pattern.wildcard"] = { link = "haskellWildcardPattern" },
+      ["@haskell.pattern.wildcard.named"] = { link = "haskellNamedWildcardPattern" },
+      ["@haskell.pragma"] = { link = "haskellPragma" },
+      ["@haskell.punctuation"] = { link = "haskellPunctuation" },
+      ["@haskell.punctuation.lambda"] = { link = "haskellLambda" },
+      ["@haskell.punctuation.bind"] = { link = "haskellBindStatement" },
+      ["@haskell.punctuation.apply"] = { link = "haskellTypeApplication" },
+      ["@haskell.quasiquote"] = { link = "haskellQuasiquote" },
+      ["@haskell.quasiquote.body"] = { link = "haskellQuasiquoteBody" },
+      ["@haskell.string"] = { link = "haskellString" },
+      ["@haskell.type"] = { link = "haskellType" },
+      ["@haskell.type.variable"] = { link = "haskellTypeVariable" },
     }
   end,
-}
+})
 
 vim.cmd("colorscheme kanagawa")
 
-
 vim.notify = require("notify")
 
-require('leap').add_default_mappings()
-require('leap-spooky').setup {
+require("leap").add_default_mappings()
+require("leap-spooky").setup({
   paste_on_remote_yank = true,
-}
+})
 
-require('overlength').setup {
+require("overlength").setup({
   -- kanagawa sumiInk4
   bg = "#2A2A37",
   -- use `textwidth` if not zero, 80 characters otherwise
   textwidth_mode = 1,
-}
+})
 
-require('Comment').setup()
+require("Comment").setup()
 
-require('lualine').setup {
+require("lualine").setup({
   options = {
     icons_enabled = true,
-    theme = 'auto',
-    component_separators = '',
+    theme = "auto",
+    component_separators = "",
     --component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    section_separators = { left = "", right = "" },
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -269,52 +280,51 @@ require('lualine').setup {
       statusline = 1000,
       tabline = 1000,
       winbar = 1000,
-    }
+    },
   },
   sections = {
     lualine_a = {
-      'mode',
+      "mode",
     },
     lualine_b = {
-      'branch',
-      'diff',
+      "branch",
+      "diff",
     },
     lualine_c = {
       {
-        'filename',
-        on_click = function (args)
-          vim.cmd('NvimTreeFocus')
+        "filename",
+        on_click = function(args)
+          vim.cmd("NvimTreeFocus")
         end,
       },
       {
-        'diagnostics',
-        sources = { 'nvim_workspace_diagnostic' },
+        "diagnostics",
+        sources = { "nvim_workspace_diagnostic" },
       },
     },
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_x = { "encoding", "fileformat", "filetype" },
+    lualine_y = { "progress" },
+    lualine_z = { "location" },
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = { "filename" },
+    lualine_x = { "location" },
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {},
   },
   tabline = {},
   winbar = {},
   inactive_winbar = {},
   extensions = {
-    'nvim-tree',
-    'man',
+    "nvim-tree",
+    "man",
     --'mundo',
     --'fugitive',
     --'nvim-dap-ui',
   },
-}
-
+})
 
 -- Telescope fuzzy finder
 local telescope = require("telescope")
@@ -352,11 +362,11 @@ telescope.setup({
   },
   extensions = {
     ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
+      require("telescope.themes").get_dropdown({
         -- even more opts
-      }
-    }
-  }
+      }),
+    },
+  },
 })
 
 -- TODO evaluate zf once UTF-8 is supported
@@ -367,10 +377,9 @@ telescope.load_extension("fzf")
 
 telescope.load_extension("ui-select")
 
-
 -- Setup nvim-cmp.
-local cmp = require('cmp')
-local luasnip = require('luasnip')
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 cmp.setup({
   snippet = {
@@ -383,12 +392,12 @@ cmp.setup({
     -- documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
@@ -396,8 +405,8 @@ cmp.setup({
       else
         fallback()
       end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -405,78 +414,78 @@ cmp.setup({
       else
         fallback()
       end
-    end, { 'i', 's' }),
+    end, { "i", "s" }),
   }),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
   }, {
-    { name = 'buffer' },
-    { name = 'path' },
-  })
+    { name = "buffer" },
+    { name = "path" },
+  }),
 })
 
 -- Set configuration for specific filetype.
-cmp.setup.filetype('gitcommit', {
+cmp.setup.filetype("gitcommit", {
   sources = cmp.config.sources({
-    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+    { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
   }, {
-    { name = 'buffer' },
-  })
+    { name = "buffer" },
+  }),
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
+cmp.setup.cmdline("/", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = 'buffer' }
-  }
+    { name = "buffer" },
+  },
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
+cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
-    { name = 'path' }
+    { name = "path" },
   }, {
-    { name = 'cmdline' }
-  })
+    { name = "cmdline" },
+  }),
 })
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local nvim_lsp = require('lspconfig')
+local nvim_lsp = require("lspconfig")
 
 -- vim.keymap.set is not recursive by default ('noremap' is ignored).
 -- Use 'remap' option if recursive bindings are required.
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, silent)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, silent)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, silent)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, silent)
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, silent)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, silent)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, silent)
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, silent)
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wl', function()
+  local bufopts = { silent = true, buffer = bufnr }
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set("n", "<space>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+  vim.keymap.set("n", "<space>f", vim.lsp.buf.formatting, bufopts)
 end
 
 vim.diagnostic.config({
@@ -487,22 +496,22 @@ vim.diagnostic.config({
 })
 
 local lsp_servers = {
-  'hls',
-  'rnix',
-  'pyright',
-  'clangd',
-  'gdscript',
-  'tsserver',
-  'svelte',
+  "hls",
+  "rnix",
+  "pyright",
+  "clangd",
+  "gdscript",
+  "tsserver",
+  "svelte",
 }
 for _, lsp_server in ipairs(lsp_servers) do
-  nvim_lsp[lsp_server].setup {
+  nvim_lsp[lsp_server].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+  })
 end
 
-nvim_lsp.lua_ls.setup {
+nvim_lsp.lua_ls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   -- TODO current settings are for neovim development. Autodetection would be
@@ -511,11 +520,11 @@ nvim_lsp.lua_ls.setup {
     Lua = {
       runtime = {
         -- Neovim _usually_ runs LuaJIT (run ':lua =jit.version' to check)
-        version = 'LuaJIT',
+        version = "LuaJIT",
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
+        globals = { "vim" },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -524,10 +533,10 @@ nvim_lsp.lua_ls.setup {
       telemetry = {
         enable = false,
       },
-    }
-  }
-}
-nvim_lsp.rust_analyzer.setup {
+    },
+  },
+})
+nvim_lsp.rust_analyzer.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -542,38 +551,33 @@ nvim_lsp.rust_analyzer.setup {
       },
     },
   },
-}
+})
 
 local null_ls = require("null-ls")
-null_ls.setup {
+null_ls.setup({
   sources = {
     null_ls.builtins.code_actions.gitsigns,
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.diagnostics.eslint,
     null_ls.builtins.completion.spell,
   },
-}
+})
 
 local lsp_lines = require("lsp_lines")
 lsp_lines.setup()
-vim.keymap.set(
-  "",
-  "<Leader>v",
-  lsp_lines.toggle,
-  { desc = "Toggle lsp_lines" }
-)
+vim.keymap.set("", "<Leader>v", lsp_lines.toggle, { desc = "Toggle lsp_lines" })
 
-require("fidget").setup {}
+require("fidget").setup({})
 
-require('crates').setup()
+require("crates").setup()
 
-require("trouble").setup {
+require("trouble").setup({
   icons = false,
   -- Not required since a bar is used
   padding = false,
-}
+})
 
-require'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup({
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
@@ -595,11 +599,10 @@ require'nvim-treesitter.configs'.setup {
     --  goto_node = '<cr>',
     --  show_help = '?',
     --},
-  }
-}
+  },
+})
 
-require("twilight").setup {}
-
+require("twilight").setup({})
 
 local bufdelete = require("bufdelete")
 
@@ -611,8 +614,7 @@ local close_current_buffer = function()
   bufdelete.bufdelete(0, true)
 end
 
-
-require("bufferline").setup {
+require("bufferline").setup({
   options = {
     close_command = close_buffer,
     middle_mouse_command = close_buffer,
@@ -622,31 +624,30 @@ require("bufferline").setup {
         filetype = "NvimTree",
         text = "  nvim-tree",
         highlight = "Directory",
-        text_align = "left"
+        text_align = "left",
       },
     },
   },
   highlights = {
     buffer_selected = {
-        italic = false,
+      italic = false,
     },
   },
-}
+})
 -- Goto buffer based on visible position in bufferline (like Alt-<#n> in browsers)
-vim.keymap.set('n', '<A-1>', '<Cmd>BufferLineGoToBuffer 1<CR>', silent)
-vim.keymap.set('n', '<A-2>', '<Cmd>BufferLineGoToBuffer 2<CR>', silent)
-vim.keymap.set('n', '<A-3>', '<Cmd>BufferLineGoToBuffer 3<CR>', silent)
-vim.keymap.set('n', '<A-4>', '<Cmd>BufferLineGoToBuffer 4<CR>', silent)
-vim.keymap.set('n', '<A-5>', '<Cmd>BufferLineGoToBuffer 5<CR>', silent)
-vim.keymap.set('n', '<A-6>', '<Cmd>BufferLineGoToBuffer 6<CR>', silent)
-vim.keymap.set('n', '<A-7>', '<Cmd>BufferLineGoToBuffer 7<CR>', silent)
-vim.keymap.set('n', '<A-8>', '<Cmd>BufferLineGoToBuffer 8<CR>', silent)
-vim.keymap.set('n', '<A-9>', '<Cmd>BufferLineGoToBuffer 9<CR>', silent)
+vim.keymap.set("n", "<A-1>", "<Cmd>BufferLineGoToBuffer 1<CR>", silent)
+vim.keymap.set("n", "<A-2>", "<Cmd>BufferLineGoToBuffer 2<CR>", silent)
+vim.keymap.set("n", "<A-3>", "<Cmd>BufferLineGoToBuffer 3<CR>", silent)
+vim.keymap.set("n", "<A-4>", "<Cmd>BufferLineGoToBuffer 4<CR>", silent)
+vim.keymap.set("n", "<A-5>", "<Cmd>BufferLineGoToBuffer 5<CR>", silent)
+vim.keymap.set("n", "<A-6>", "<Cmd>BufferLineGoToBuffer 6<CR>", silent)
+vim.keymap.set("n", "<A-7>", "<Cmd>BufferLineGoToBuffer 7<CR>", silent)
+vim.keymap.set("n", "<A-8>", "<Cmd>BufferLineGoToBuffer 8<CR>", silent)
+vim.keymap.set("n", "<A-9>", "<Cmd>BufferLineGoToBuffer 9<CR>", silent)
 -- Goto last visible buffer
-vim.keymap.set('n', '<A-0>', '<Cmd>BufferLineGoToBuffer -1<CR>', silent)
+vim.keymap.set("n", "<A-0>", "<Cmd>BufferLineGoToBuffer -1<CR>", silent)
 -- C-w is mapped to the window prefix, but A-w is close enough
-vim.keymap.set('n', '<A-w>', close_current_buffer, silent)
-
+vim.keymap.set("n", "<A-w>", close_current_buffer, silent)
 
 -- For a future release
 -- require('illuminate').configure({
@@ -654,11 +655,11 @@ vim.keymap.set('n', '<A-w>', close_current_buffer, silent)
 --   delay = 0,
 -- })
 
-require("which-key").setup {}
+require("which-key").setup({})
 
-require("gitsigns").setup {}
+require("gitsigns").setup({})
 
-require("nvim-tree").setup {
+require("nvim-tree").setup({
   hijack_netrw = false,
   root_dirs = {},
   sync_root_with_cwd = false,
@@ -676,4 +677,4 @@ require("nvim-tree").setup {
   filters = {
     custom = { "^.git$" },
   },
-}
+})
