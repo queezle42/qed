@@ -107,6 +107,7 @@ pkgs.neovim.override {
 
         # neovim native language server support
         nvim-lspconfig
+        null-ls-nvim
 
         # rust cargo crate support
         crates-nvim

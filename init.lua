@@ -544,6 +544,16 @@ nvim_lsp.rust_analyzer.setup {
   },
 }
 
+local null_ls = require("null-ls")
+null_ls.setup {
+  sources = {
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.diagnostics.eslint,
+    null_ls.builtins.completion.spell,
+  },
+}
+
 local lsp_lines = require("lsp_lines")
 lsp_lines.setup()
 vim.keymap.set(

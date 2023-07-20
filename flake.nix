@@ -28,6 +28,7 @@
           inputsFrom = [ self.packages.${system}.default ];
           packages = [
             pkgs.sumneko-lua-language-server
+            pkgs.stylua
           ];
         }
       );
