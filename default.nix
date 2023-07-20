@@ -77,8 +77,10 @@ pkgs.neovim.override {
         # Mark whitespace red
         vim-better-whitespace
 
-        # Multi-cursor. <C-n> to start/add cursor on next match, <C-x> to skip match, <C-p> to undo cursor, <A-n> to select all matches.
-        vim-multiple-cursors
+        # Multi-cursor. <C-n> to start/add cursor on next match, press 'q' to
+        # skip match, then do an operation ('i', 'a', 'c', 'p', ...).
+        # See manual for more options.
+        vim-visual-multi
 
         # Fuzzy finder
         telescope-nvim
