@@ -77,10 +77,6 @@ vim.keymap.set("n", "<C-s>", function()
   vim.cmd("update")
 end)
 
-vim.keymap.set("n", "<C-p>", function()
-  vim.cmd("Telescope find_files")
-end)
-
 -- Use `ALT+{h,j,k,l}` to navigate windows from any mode
 vim.keymap.set("n", "<A-h>", "<C-w>h")
 vim.keymap.set("n", "<A-j>", "<C-w>j")
@@ -328,10 +324,11 @@ require("lualine").setup {
 
 -- Telescope fuzzy finder
 local telescope = require("telescope")
-local telescopeConfig = require("telescope.config")
+local telescope_builtin = require("telescope.builtin")
+local telescope_config = require("telescope.config")
 
 -- Clone the default Telescope configuration
-local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
 
 -- I want to search in hidden/dot files.
 table.insert(vimgrep_arguments, "--hidden")
@@ -369,6 +366,8 @@ telescope.setup {
     },
   },
 }
+
+vim.keymap.set("n", "<C-p>", telescope_builtin.find_files)
 
 -- TODO evaluate zf once UTF-8 is supported
 -- (zig finder, the sorting algorithm is an improvement to fzf)
@@ -475,19 +474,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations, opts)
     vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
     vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
     vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
     vim.keymap.set("n", "<space>wl", function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts)
-    vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
+    vim.keymap.set("n", "<space>D", telescope_builtin.lsp_type_definitions, opts)
     vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
     vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "gr", telescope_builtin.lsp_references, opts)
     vim.keymap.set("n", "<space>f", function()
       vim.lsp.buf.format { async = true }
     end, opts)
