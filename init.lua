@@ -41,7 +41,8 @@ vim.opt.linebreak = true
 -- Other limits might be useful for personal projects, but since this is so
 -- widely used, 80 is a good default.
 -- TODO Reading a project-wide override from a file would be useful.
-vim.opt.colorcolumn = "81"
+-- Currently disabled in favor of 'overlength' plugin
+--vim.opt.colorcolumn = "81"
 
 -- Shows the effects of a command incrementally, as you type. Also shows partial off-screen results in a preview window.
 vim.opt.inccommand = "split"
@@ -113,6 +114,9 @@ require("kanagawa").setup {
   },
   overrides = function(colors)
     return {
+      overlength = {
+        bg = colors.palette.sumiInk2,
+      },
       haskellConstraint = {
         fg = colors.palette.waveRed,
         italic = true,
@@ -238,12 +242,12 @@ require('leap-spooky').setup {
   paste_on_remote_yank = true,
 }
 
--- TODO Not packaged in nixpkgs
--- require('overlength').setup {
---   bg = kanagawa_colors.sumiInk2,
---   -- use `textwidth` if not zero, 80 characters otherwise
---   textwidth_mode = 1,
--- }
+require('overlength').setup {
+  -- kanagawa sumiInk4
+  bg = "#2A2A37",
+  -- use `textwidth` if not zero, 80 characters otherwise
+  textwidth_mode = 1,
+}
 
 require('Comment').setup()
 
