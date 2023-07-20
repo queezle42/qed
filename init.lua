@@ -345,6 +345,7 @@ telescope.setup({
     vimgrep_arguments = vimgrep_arguments,
     mappings = {
       i = {
+        ["<C-h>"] = "which_key",
         ["<C-j>"] = "move_selection_next",
         ["<C-k>"] = "move_selection_previous",
       },
