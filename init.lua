@@ -615,7 +615,8 @@ local close_current_buffer = function()
   bufdelete.bufdelete(0, true)
 end
 
-require("bufferline").setup({
+local bufferline = require("bufferline")
+bufferline.setup({
   options = {
     close_command = close_buffer,
     middle_mouse_command = close_buffer,
@@ -635,18 +636,23 @@ require("bufferline").setup({
     },
   },
 })
+local go_to_buffer_fn = function(num)
+  return function()
+    bufferline.go_to(num, true)
+  end
+end
 -- Goto buffer based on visible position in bufferline (like Alt-<#n> in browsers)
-vim.keymap.set("n", "<A-1>", "<Cmd>BufferLineGoToBuffer 1<CR>", silent)
-vim.keymap.set("n", "<A-2>", "<Cmd>BufferLineGoToBuffer 2<CR>", silent)
-vim.keymap.set("n", "<A-3>", "<Cmd>BufferLineGoToBuffer 3<CR>", silent)
-vim.keymap.set("n", "<A-4>", "<Cmd>BufferLineGoToBuffer 4<CR>", silent)
-vim.keymap.set("n", "<A-5>", "<Cmd>BufferLineGoToBuffer 5<CR>", silent)
-vim.keymap.set("n", "<A-6>", "<Cmd>BufferLineGoToBuffer 6<CR>", silent)
-vim.keymap.set("n", "<A-7>", "<Cmd>BufferLineGoToBuffer 7<CR>", silent)
-vim.keymap.set("n", "<A-8>", "<Cmd>BufferLineGoToBuffer 8<CR>", silent)
-vim.keymap.set("n", "<A-9>", "<Cmd>BufferLineGoToBuffer 9<CR>", silent)
+vim.keymap.set("n", "<A-1>", go_to_buffer_fn(1), silent)
+vim.keymap.set("n", "<A-2>", go_to_buffer_fn(2), silent)
+vim.keymap.set("n", "<A-3>", go_to_buffer_fn(3), silent)
+vim.keymap.set("n", "<A-4>", go_to_buffer_fn(4), silent)
+vim.keymap.set("n", "<A-5>", go_to_buffer_fn(5), silent)
+vim.keymap.set("n", "<A-6>", go_to_buffer_fn(6), silent)
+vim.keymap.set("n", "<A-7>", go_to_buffer_fn(7), silent)
+vim.keymap.set("n", "<A-8>", go_to_buffer_fn(8), silent)
+vim.keymap.set("n", "<A-9>", go_to_buffer_fn(9), silent)
 -- Goto last visible buffer
-vim.keymap.set("n", "<A-0>", "<Cmd>BufferLineGoToBuffer -1<CR>", silent)
+vim.keymap.set("n", "<A-0>", go_to_buffer_fn(-1), silent)
 -- C-w is mapped to the window prefix, but A-w is close enough
 vim.keymap.set("n", "<A-w>", close_current_buffer, silent)
 
