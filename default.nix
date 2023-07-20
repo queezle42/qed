@@ -36,7 +36,6 @@ in
 pkgs.neovim.override {
   configure = {
     customRC = ''
-      source ${./init.vim}
       source ${./init.lua}
 
       lua << EOF

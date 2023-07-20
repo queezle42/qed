@@ -1,3 +1,109 @@
+-- Configure ' ' as the leader key (would be '\' by default).
+vim.g.mapleader = " "
+
+-- Timeout length, e.g. for which-key
+vim.opt.timeoutlen = 800
+
+vim.opt.termguicolors = true
+
+-- Enable line numbers
+vim.opt.number = true
+--vim.opt.relativenumber = true
+
+-- Highlight active line (this works well with gruvbox)
+vim.opt.cursorline = true
+
+-- Use 2 spaces for indentation
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.shiftround = true
+
+-- Send the active buffer to the background when opening a file (allows to have unsaved changes in multiple files)
+vim.opt.hidden = true
+
+vim.opt.smartindent = true
+
+-- Search case-insensitive by default but switch to case-sensitive when using uppercase letters.
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Full mouse support
+vim.opt.mouse = "a"
+
+-- Yank to primary selection.
+-- I want to use clipboard=autoselect, when it is implemented: https://github.com/neovim/neovim/pull/3708
+vim.opt.clipboard = "unnamed"
+
+-- Wrap at word boundaries instead of splitting words at the end of the line.
+vim.opt.linebreak = true
+
+-- Set colorcolumn as a hint to stay within 80 characters per line.
+-- Other limits might be useful for personal projects, but since this is so
+-- widely used, 80 is a good default.
+-- TODO Reading a project-wide override from a file would be useful.
+vim.opt.colorcolumn = "81"
+
+-- Shows the effects of a command incrementally, as you type. Also shows partial off-screen results in a preview window.
+vim.opt.inccommand = "split"
+
+-- Configure completion: First <tab> completes to the longest common string and also opens the completion menu, following <Tab>s complete the next matches.
+vim.opt.wildmode = { "longest:full", "full" }
+
+-- Don't show mode in command line (command line is used by echodoc.vim instead while mode is shown in status bar)
+vim.opt.showmode = false
+
+-- Setup completion window for nvim-cmp
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
+
+vim.g.highlightedyank_highlight_duration = 200
+
+
+local silent = { silent=true }
+local remap = { remap = true }
+
+-- Paste from last yanked using <ö>
+vim.keymap.set({'n', 'v'}, 'ö', '"0p')
+
+-- Use C-j/C-k to navigate history in the command line
+vim.keymap.set('c', '<C-j>', '<Down>');
+vim.keymap.set('c', '<C-k>', '<Up>');
+
+
+-- Map 'ü' and '+' to '[' and ']' (fix for german keyboard layout)
+vim.keymap.set('n', 'ü', '[', remap);
+vim.keymap.set('n', '+', ']', remap);
+
+-- Save with Ctrl-S (if file has changed)
+vim.keymap.set('n', '<C-s>', function() vim.cmd("update") end);
+
+vim.keymap.set('n', '<C-p>', function() vim.cmd("Telescope find_files") end);
+
+-- Use `ALT+{h,j,k,l}` to navigate windows from any mode
+vim.keymap.set('n', '<A-h>', '<C-w>h');
+vim.keymap.set('n', '<A-j>', '<C-w>j');
+vim.keymap.set('n', '<A-k>', '<C-w>k');
+vim.keymap.set('n', '<A-l>', '<C-w>l');
+vim.keymap.set({'i', 't'}, '<A-h>', '<C-\\><C-N><C-w>h');
+vim.keymap.set({'i', 't'}, '<A-j>', '<C-\\><C-N><C-w>j');
+vim.keymap.set({'i', 't'}, '<A-k>', '<C-\\><C-N><C-w>k');
+vim.keymap.set({'i', 't'}, '<A-l>', '<C-\\><C-N><C-w>l');
+
+-- "Project view" - open file tree, chosen to be similar to <C-p> file picker
+vim.keymap.set('n', '<Leader>p', function() vim.cmd("NvimTreeFocus") end);
+
+-- Bufferline
+vim.keymap.set('n', 'gb', function() vim.cmd("BufferLinePick") end, silent);
+
+vim.keymap.set('n', '<Leader>t', function() vim.cmd("TroubleToggle") end);
+
+-- <Leader>n clears the last search highlighting.
+vim.keymap.set({'n', 'v'}, '<Leader>n', function() vim.cmd("nohlsearch") end);
+
+-- Shortcut to enable spellcheck (requires aspell installation)
+vim.keymap.set('n', '<Leader>s', function() vim.cmd("setlocal spell spelllang=en_us") end);
+vim.keymap.set('n', '<Leader>S', function() vim.cmd("setlocal spell spelllang=de_de") end);
+
 
 local sakura_types = false;
 
@@ -338,14 +444,10 @@ local nvim_lsp = require('lspconfig')
 
 -- vim.keymap.set is not recursive by default ('noremap' is ignored).
 -- Use 'remap' option if recursive bindings are required.
-local silent = { silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, silent)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, silent)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, silent)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, silent)
-
-vim.keymap.set('c', '<C-j>', '<Down>');
-vim.keymap.set('c', '<C-k>', '<Up>');
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
@@ -509,10 +611,6 @@ vim.keymap.set('n', '<A-9>', '<Cmd>BufferLineGoToBuffer 9<CR>', silent)
 vim.keymap.set('n', '<A-0>', '<Cmd>BufferLineGoToBuffer -1<CR>', silent)
 -- C-w is mapped to the window prefix, but A-w is close enough
 vim.keymap.set('n', '<A-w>', close_current_buffer, silent)
-
-
--- Paste from last yanked using <ö>
-vim.keymap.set({'n', 'v'}, 'ö', '"0p')
 
 
 -- For a future release
