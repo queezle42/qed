@@ -68,7 +68,7 @@ in
 pkgs.neovim.override {
   configure = {
     customRC = ''
-      source ${./init.lua}
+      source ${./lua/init.lua}
 
       lua << EOF
         local haskell_highlight_grammar_file = io.open("${./tree-sitter-haskell/highlights.scm}")
