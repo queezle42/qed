@@ -18,8 +18,10 @@ jobs:
           name: qed
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
           skipPush: true
-      - run: nix --print-build-logs build .
-      - run: nix --print-build-logs --no-link build .#stylua
+      - name: "Build"
+        run: nix --print-build-logs build .
+      - name: "Formatting check (stylua)"
+        run: nix --print-build-logs build --no-link .#stylua
       - name: "Cachix: Push and pin as 'main'"
         run: |
           cachix push qed result
