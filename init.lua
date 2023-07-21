@@ -358,13 +358,6 @@ telescope.setup {
       find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*" },
     },
   },
-  extensions = {
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
-        -- even more opts
-      },
-    },
-  },
 }
 
 vim.keymap.set("n", "<C-p>", telescope_builtin.find_files)
@@ -375,7 +368,12 @@ vim.keymap.set("n", "<C-p>", telescope_builtin.find_files)
 -- https://github.com/natecraddock/telescope-zf-native.nvim
 telescope.load_extension("fzf")
 
-telescope.load_extension("ui-select")
+require("dressing").setup {
+  input = {
+    insert_only = false,
+    anchor = "NW",
+  },
+}
 
 -- Setup nvim-cmp.
 local cmp = require("cmp")

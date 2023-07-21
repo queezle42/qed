@@ -105,9 +105,10 @@ pkgs.neovim.override {
 
         # Fuzzy finder
         telescope-nvim
-        telescope-ui-select-nvim
         telescope-symbols-nvim
         telescope-fzf-native-nvim
+
+        dressing-nvim
 
         nvim-notify
 
