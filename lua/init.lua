@@ -62,7 +62,7 @@ local silent = { silent = true }
 local remap = { remap = true }
 
 -- Paste from last yanked using <ö>
-vim.keymap.set({ "n", "v" }, "ö", '"0p')
+vim.keymap.set({ "n", "v" }, "ö", '"0p', { desc = "Paste last yanked" })
 
 -- Use C-j/C-k to navigate history in the command line
 vim.keymap.set("c", "<C-j>", "<Down>")
@@ -75,7 +75,7 @@ vim.keymap.set("n", "+", "]", remap)
 -- Save with Ctrl-S (if file has changed)
 vim.keymap.set("n", "<C-s>", function()
   vim.cmd("update")
-end)
+end, { desc = "Write file if modified" })
 
 -- Use `ALT+{h,j,k,l}` to navigate windows from any mode
 vim.keymap.set("n", "<A-h>", "<C-w>h")
@@ -90,29 +90,30 @@ vim.keymap.set({ "i", "t" }, "<A-l>", "<C-\\><C-N><C-w>l")
 -- "Project view" - open file tree, chosen to be similar to <C-p> file picker
 vim.keymap.set("n", "<Leader>p", function()
   vim.cmd("NvimTreeFocus")
-end)
+end, { desc = "Open file tree" })
 
 -- Bufferline
-vim.keymap.set("n", "gb", function()
-  vim.cmd("BufferLinePick")
-end, silent)
+-- TODO conflicts with 'comment blockwise'
+--vim.keymap.set("n", "gb", function()
+--  vim.cmd("BufferLinePick")
+--end, silent)
 
 vim.keymap.set("n", "<Leader>t", function()
   vim.cmd("TroubleToggle")
-end)
+end, { desc = "Toggle diagnostics list" })
 
 -- <Leader>n clears the last search highlighting.
 vim.keymap.set({ "n", "v" }, "<Leader>n", function()
   vim.cmd("nohlsearch")
-end)
+end, { desc = "Remove search highlighting" })
 
 -- Shortcut to enable spellcheck (requires aspell installation)
 vim.keymap.set("n", "<Leader>s", function()
   vim.cmd("setlocal spell spelllang=en_us")
-end)
+end, { desc = "Enable spellcheck (en_us)" })
 vim.keymap.set("n", "<Leader>S", function()
   vim.cmd("setlocal spell spelllang=de_de")
-end)
+end, { desc = "Enable spellcheck (de_de)" })
 
 local sakura_types = false
 
@@ -360,7 +361,7 @@ telescope.setup {
   },
 }
 
-vim.keymap.set("n", "<C-p>", telescope_builtin.find_files)
+vim.keymap.set("n", "<C-p>", telescope_builtin.find_files, { desc = "Find files" })
 
 -- TODO evaluate zf once UTF-8 is supported
 -- (zig finder, the sorting algorithm is an improvement to fzf)
@@ -467,10 +468,10 @@ local nvim_lsp = require("lspconfig")
 
 -- vim.keymap.set is not recursive by default ('noremap' is ignored).
 -- Use 'remap' option if recursive bindings are required.
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, silent)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, silent)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, silent)
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, silent)
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic at cursor" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Store diagnostics in loclist" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -480,24 +481,29 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { buffer = ev.buf }
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-    vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations, opts)
-    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-    vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+    local mkopts = function(desc)
+      return {
+        buffer = ev.buf,
+        desc = desc,
+      }
+    end
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, mkopts("Go to declaration"))
+    vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, mkopts("Go to definition"))
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, mkopts("Show documentation"))
+    vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations, mkopts("Go to implementation"))
+    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, mkopts("Go to documentation"))
+    vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, mkopts("lsp: Add folder to workspace"))
+    vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, mkopts("lsp: Remove folder to workspace"))
     vim.keymap.set("n", "<leader>wl", function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
-    vim.keymap.set("n", "<leader>D", telescope_builtin.lsp_type_definitions, opts)
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "gr", telescope_builtin.lsp_references, opts)
+    end, mkopts("lsp: List workspace folders"))
+    vim.keymap.set("n", "<leader>D", telescope_builtin.lsp_type_definitions, mkopts("Go to definition"))
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, mkopts("Rename symbol"))
+    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, mkopts("Code action"))
+    vim.keymap.set("n", "gr", telescope_builtin.lsp_references, mkopts("Go to reference"))
     vim.keymap.set("n", "<leader>f", function()
       vim.lsp.buf.format { async = true }
-    end, opts)
+    end, mkopts("Format code"))
   end,
 })
 
