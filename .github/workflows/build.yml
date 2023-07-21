@@ -20,10 +20,20 @@ jobs:
           skipPush: true
       - name: "Build"
         run: nix --print-build-logs build .
-      - name: "Formatting check (stylua)"
-        run: nix --print-build-logs build --no-link .#stylua
       - name: "Cachix: Push and pin as 'main'"
         run: |
           cachix push qed result
           cachix pin qed main result --keep-revisions 3
         if: github.event_name == 'push' && github.repository == 'queezle42/qed' && github.ref == 'refs/heads/main'
+  code-style:
+    name: "Code style"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v20
+      - uses: cachix/cachix-action@v12
+        with:
+          name: qed
+          skipPush: true
+      - name: "Code style check (stylua)"
+        run: nix --print-build-logs build --no-link .#stylua
