@@ -18,6 +18,14 @@
         in {
           default = pkgs.qed;
           qed = pkgs.qed;
+          stylua = pkgs.runCommand "stylua" {
+            src = ./.;
+            buildInputs = [ pkgs.stylua ];
+          } ''
+          cd $src
+          stylua --check lua/
+          touch $out
+          '';
         }
       );
 
