@@ -372,6 +372,16 @@ require("dressing").setup {
   input = {
     insert_only = false,
     anchor = "NW",
+    mappings = {
+      n = {
+        ["<C-k>"] = "HistoryPrev",
+        ["<C-j>"] = "HistoryNext",
+      },
+      i = {
+        ["<C-k>"] = "HistoryPrev",
+        ["<C-j>"] = "HistoryNext",
+      },
+    },
   },
 }
 
