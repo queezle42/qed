@@ -135,6 +135,9 @@ pkgs.neovim.override {
         # rust cargo crate support
         crates-nvim
 
+        # neovim config/plugin development
+        neodev-nvim
+
         # Diagnostics UI
         trouble-nvim
         lsp_lines-nvim
