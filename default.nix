@@ -32,16 +32,6 @@ let
       sha256 = "sha256-mkbfGTSLCB2Srjjk3FfacP7HazxwSW0F/7AOfp/vv/g=";
     };
   };
-  overlength-nvim = pkgs.vimUtils.buildVimPlugin rec {
-    pname = "overlength-nvim";
-    version = "unstable";
-    src = pkgs.fetchFromGitHub {
-      owner = "lcheylus";
-      repo = "overlength.nvim";
-      rev = "3715b66d10ae0a68667e50c650c2ef3e5ab9f1e7";
-      sha256 = "sha256-TUJSnA7Beifplj5k3qAUUBMwcxPelP0zA7JQ2li2cgs=";
-    };
-  };
   # Pin fidget.nvim to 'legacy' branch because it "will soon be completely rewritten"
   fidget-nvim = pkgs.vimUtils.buildVimPlugin rec {
     pname = "fidget-nvim";
@@ -183,9 +173,6 @@ pkgs.neovim.override {
           ]
         ))
         playground
-
-        # Highlight long lines
-        overlength-nvim
 
         # treesitter-based dimming of inactive code
         twilight-nvim

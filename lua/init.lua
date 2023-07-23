@@ -40,9 +40,11 @@ vim.opt.linebreak = true
 -- Set colorcolumn as a hint to stay within 80 characters per line.
 -- Other limits might be useful for personal projects, but since this is so
 -- widely used, 80 is a good default.
--- TODO Reading a project-wide override from a file would be useful.
--- Currently disabled in favor of 'overlength' plugin
---vim.opt.colorcolumn = "81"
+local colorcolumn = {}
+for i = 81, 1000 do
+  colorcolumn[#colorcolumn + 1] = tostring(i)
+end
+vim.opt.colorcolumn = table.concat(colorcolumn, ",")
 
 -- Shows the effects of a command incrementally, as you type. Also shows partial off-screen results in a preview window.
 vim.opt.inccommand = "split"
@@ -254,13 +256,6 @@ vim.notify = require("notify")
 require("leap").add_default_mappings()
 require("leap-spooky").setup {
   paste_on_remote_yank = true,
-}
-
-require("overlength").setup {
-  -- kanagawa sumiInk4
-  bg = "#2A2A37",
-  -- use `textwidth` if not zero, 80 characters otherwise
-  textwidth_mode = 1,
 }
 
 require("Comment").setup()
