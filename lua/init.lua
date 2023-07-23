@@ -126,10 +126,8 @@ require("kanagawa").setup {
   overrides = function(colors)
     return {
       DiagnosticUnnecessary = {
-        link = "DiagnosticUnderlineInfo",
-        --cterm = "undercurl",
-        --gui = "undercurl",
-        --guisp = colors.palette.sakuraPink,
+        undercurl = true,
+        sp = colors.palette.fujiGray,
       },
       ExtraWhitespace = {
         bg = colors.theme.diag.error,
