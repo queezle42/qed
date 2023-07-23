@@ -123,8 +123,14 @@ require("kanagawa").setup {
   },
   overrides = function(colors)
     return {
-      overlength = {
-        bg = colors.palette.sumiInk2,
+      DiagnosticUnnecessary = {
+        link = "DiagnosticUnderlineInfo",
+        --cterm = "undercurl",
+        --gui = "undercurl",
+        --guisp = colors.palette.sakuraPink,
+      },
+      ExtraWhitespace = {
+        bg = colors.theme.diag.error,
       },
       haskellConstraint = {
         fg = colors.palette.waveRed,
