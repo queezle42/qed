@@ -125,6 +125,12 @@ require("kanagawa").setup {
   },
   overrides = function(colors)
     return {
+      CursorLine = {
+        bg = colors.palette.sumiInk4,
+      },
+      ColorColumn = {
+        bg = colors.palette.sumiInk2,
+      },
       DiagnosticUnnecessary = {
         undercurl = true,
         sp = colors.palette.fujiGray,
