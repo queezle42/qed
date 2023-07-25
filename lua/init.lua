@@ -131,6 +131,9 @@ require("kanagawa").setup {
       ColorColumn = {
         bg = colors.palette.sumiInk2,
       },
+      EndOfBuffer = {
+        bg = colors.palette.sumiInk2,
+      },
       DiagnosticUnnecessary = {
         undercurl = true,
         sp = colors.palette.fujiGray,
