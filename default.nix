@@ -43,17 +43,6 @@ let
       sha256 = "sha256-N3O/AvsD6Ckd62kDEN4z/K5A3SZNR15DnQeZhH6/Rr0=";
     };
   };
-  # Temporary override while waiting for https://github.com/stevearc/dressing.nvim/issues/106
-  dressing-nvim = pkgs.vimUtils.buildVimPlugin rec {
-    pname = "dressing-nvim";
-    version = "unstable";
-    src = pkgs.fetchFromGitHub {
-      owner = "queezle42";
-      repo = "dressing.nvim";
-      rev = "08dff538e27e94df27c690799ba9ea4bc2383a30";
-      sha256 = "sha256-5aN68lHdjhddwsi7qsEgk0JiJhLHUfkmjEdylfWzoFY=";
-    };
-  };
 in
 pkgs.neovim.override {
   configure = {

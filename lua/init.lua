@@ -380,7 +380,6 @@ telescope.load_extension("fzf")
 require("dressing").setup {
   input = {
     insert_only = false,
-    anchor = "NW",
     mappings = {
       n = {
         ["<C-k>"] = "HistoryPrev",
@@ -391,6 +390,10 @@ require("dressing").setup {
         ["<C-j>"] = "HistoryNext",
       },
     },
+    override = function(conf)
+      conf.anchor = "NW"
+      conf.row = 1
+    end,
   },
 }
 
