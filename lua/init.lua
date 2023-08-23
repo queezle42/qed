@@ -508,7 +508,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations, mkopts("Go to implementation"))
     vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, mkopts("Go to documentation"))
     vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, mkopts("lsp: Add folder to workspace"))
-    vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, mkopts("lsp: Remove folder to workspace"))
+    vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, mkopts("lsp: Remove folder from workspace"))
     vim.keymap.set("n", "<leader>wl", function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, mkopts("lsp: List workspace folders"))
