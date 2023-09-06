@@ -576,7 +576,9 @@ null_ls.setup {
     null_ls.builtins.code_actions.gitsigns,
     null_ls.builtins.code_actions.shellcheck,
     null_ls.builtins.completion.spell,
-    null_ls.builtins.diagnostics.eslint,
+    -- ESLint does not properly detect if the repository is set up for eslint,
+    -- i.e. it shows an error in every file when the eslint config is missing.
+    --null_ls.builtins.diagnostics.eslint,
     null_ls.builtins.formatting.stylua,
   },
 }
