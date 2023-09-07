@@ -531,7 +531,7 @@ vim.diagnostic.config {
 
 local lsp_servers = {
   "hls",
-  "rnix",
+  "nil_ls",
   "pyright",
   "clangd",
   "gdscript",
@@ -550,6 +550,16 @@ nvim_lsp.lua_ls.setup {
     Lua = {
       telemetry = {
         enable = false,
+      },
+    },
+  },
+}
+nvim_lsp.nil_ls.setup {
+  capabilities = capabilities,
+  settings = {
+    ["nil"] = {
+      formatting = {
+        command = { "alejandra" },
       },
     },
   },
