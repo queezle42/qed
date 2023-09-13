@@ -714,3 +714,8 @@ require("nvim-tree").setup {
     custom = { "^.git$" },
   },
 }
+
+-- Last in this file we try to securely source some user configuration
+-- (exrc is not usable as we source this file via -u cli flag)
+local nvim_lua_content = vim.secure.read(".nvim.lua") or ""
+loadstring(nvim_lua_content)()
