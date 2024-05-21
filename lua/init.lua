@@ -258,6 +258,19 @@ require("kanagawa").setup {
 
 vim.cmd("colorscheme kanagawa")
 
+-- Configure terminal options
+local terminal_group = vim.api.nvim_create_augroup("terminal", { clear = true })
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+  group = terminal_group,
+  callback = function(ev)
+    -- Clear line number options
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    -- Disable trailing whitespace highlight (from vim-better-whitespace plugin)
+    vim.cmd("DisableWhitespace")
+  end,
+})
+
 vim.notify = require("notify")
 
 require("leap").add_default_mappings()
