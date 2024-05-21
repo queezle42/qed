@@ -43,6 +43,16 @@ let
       sha256 = "sha256-N3O/AvsD6Ckd62kDEN4z/K5A3SZNR15DnQeZhH6/Rr0=";
     };
   };
+  typst-preview = pkgs.vimUtils.buildVimPlugin rec {
+    pname = "typst-preview-nvim";
+    version = "unstable";
+    src = pkgs.fetchFromGitHub {
+      owner = "chomosuke";
+      repo = "typst-preview.nvim";
+      rev = "15eaaffc0a2d8cd871f485f399d1d67ed3322a0b";
+      sha256 = "sha256-33clHm4XRfbYKSYrofm1TEaUV2UCIFVqNAc6Js8sTzY=";
+    };
+  };
 in
 pkgs.neovim.override {
   configure = {
@@ -205,6 +215,9 @@ pkgs.neovim.override {
 
         # music livecoding
         vim-tidal
+
+        # documents
+        typst-preview
       ] ++ extraStartPlugins;
       opt = [
       ] ++ extraOptPlugins;
