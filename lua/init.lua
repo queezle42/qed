@@ -265,7 +265,7 @@ vim.cmd("colorscheme kanagawa")
 local terminal_group = vim.api.nvim_create_augroup("terminal", { clear = true })
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
   group = terminal_group,
-  callback = function(ev)
+  callback = function(_)
     -- Clear line number options
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
@@ -314,7 +314,7 @@ require("lualine").setup {
     lualine_c = {
       {
         "filename",
-        on_click = function(args)
+        on_click = function(_)
           vim.cmd("NvimTreeFocus")
         end,
       },
