@@ -76,6 +76,9 @@ vim.keymap.set("n", "+", "]", remap)
 
 -- Save with Ctrl-S (if file has changed)
 vim.keymap.set("n", "<C-s>", function()
+  if vim.bo.filetype == "rust" then
+    vim.lsp.buf.format()
+  end
   vim.cmd("update")
 end, { desc = "Write file if modified" })
 
