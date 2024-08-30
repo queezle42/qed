@@ -104,8 +104,8 @@ end, { desc = "Open file tree" })
 --end, silent)
 
 vim.keymap.set("n", "<Leader>t", function()
-  vim.cmd("TroubleToggle")
-end, { desc = "Toggle diagnostics list" })
+  vim.cmd("Trouble")
+end, { desc = "Open diagnostics list" })
 
 -- <Leader>n clears the last search highlighting.
 vim.keymap.set({ "n", "v" }, "<Leader>n", function()
