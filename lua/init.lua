@@ -580,20 +580,31 @@ nvim_lsp.nil_ls.setup {
     },
   },
 }
-nvim_lsp.rust_analyzer.setup {
-  capabilities = capabilities,
-  settings = {
-    ["rust-analyzer"] = {
-      cargo = {
-        buildScripts = {
+
+vim.g.rustaceanvim = {
+  -- Plugin configuration
+  tools = {},
+  -- LSP configuration
+  server = {
+    on_attach = function(client, bufnr)
+      -- you can also put keymaps in here
+    end,
+    default_settings = {
+      -- rust-analyzer language server configuration
+      ["rust-analyzer"] = {
+        cargo = {
+          buildScripts = {
+            enable = true,
+          },
+        },
+        procMacro = {
           enable = true,
         },
       },
-      procMacro = {
-        enable = true,
-      },
     },
   },
+  -- DAP configuration
+  dap = {},
 }
 
 local null_ls = require("null-ls")

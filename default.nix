@@ -124,7 +124,8 @@ pkgs.neovim.override {
         # debug adapter
         nvim-dap
 
-        # rust cargo crate support
+        # rust
+        rustaceanvim
         crates-nvim
 
         # neovim config/plugin development
