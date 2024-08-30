@@ -121,6 +121,9 @@ pkgs.neovim.override {
         nvim-lspconfig
         null-ls-nvim
 
+        # debug adapter
+        nvim-dap
+
         # rust cargo crate support
         crates-nvim
 
