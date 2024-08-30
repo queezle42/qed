@@ -60,11 +60,11 @@ pkgs.neovim.override {
       source ${./lua/init.lua}
 
       lua << EOF
-        local haskell_highlight_grammar_file = io.open("${./tree-sitter-haskell/highlights.scm}")
-        local haskell_highlight_grammar = haskell_highlight_grammar_file:read('a')
-        haskell_highlight_grammar_file:close()
+        --local haskell_highlight_grammar_file = io.open("${./tree-sitter-haskell/highlights.scm}")
+        --local haskell_highlight_grammar = haskell_highlight_grammar_file:read('a')
+        --haskell_highlight_grammar_file:close()
 
-        vim.treesitter.query.set("haskell", "highlights", haskell_highlight_grammar)
+        --vim.treesitter.query.set("haskell", "highlights", haskell_highlight_grammar)
       EOF
 
       ${extraRC}
@@ -151,7 +151,7 @@ pkgs.neovim.override {
         # treesitter
         (nvim-treesitter.withPlugins (
           plugins: with plugins; [
-            tree-sitter-haskell
+            #tree-sitter-haskell
             tree-sitter-nix
             tree-sitter-lua
             tree-sitter-python
