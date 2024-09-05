@@ -29,6 +29,13 @@
         }
       );
 
+      checks = forAllSystems (system:
+        {
+          build = self.packages.${system}.default;
+          stylua = self.packages.${system}.stylua;
+        }
+      );
+
       devShell = forAllSystems (system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
