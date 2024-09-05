@@ -123,6 +123,7 @@ pkgs.neovim.override {
 
         # debug adapter
         nvim-dap
+        nvim-dap-ui
 
         # rust
         rustaceanvim

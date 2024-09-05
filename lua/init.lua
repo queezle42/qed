@@ -322,6 +322,12 @@ require("lualine").setup {
         "diagnostics",
         sources = { "nvim_workspace_diagnostic" },
       },
+      {
+        require("dap").status,
+        on_click = function(_)
+          require("dapui").toggle()
+        end,
+      },
     },
     lualine_x = { "encoding", "fileformat", "filetype" },
     lualine_y = { "progress" },
@@ -341,9 +347,9 @@ require("lualine").setup {
   extensions = {
     "nvim-tree",
     "man",
+    "nvim-dap-ui",
     --'mundo',
     --'fugitive',
-    --'nvim-dap-ui',
   },
 }
 
@@ -620,35 +626,37 @@ null_ls.setup {
   },
 }
 
+local dap = require("dap")
+
 vim.keymap.set("n", "<F5>", function()
-  require("dap").continue()
+  dap.continue()
 end)
 vim.keymap.set("n", "<F10>", function()
-  require("dap").step_over()
+  dap.step_over()
 end)
 vim.keymap.set("n", "<F11>", function()
-  require("dap").step_into()
+  dap.step_into()
 end)
 vim.keymap.set("n", "<F12>", function()
-  require("dap").step_out()
+  dap.step_out()
 end)
 vim.keymap.set("n", "<F9>", function()
-  require("dap").toggle_breakpoint()
+  dap.toggle_breakpoint()
 end)
 vim.keymap.set("n", "<Leader>b", function()
-  require("dap").toggle_breakpoint()
+  dap.toggle_breakpoint()
 end)
 vim.keymap.set("n", "<Leader>B", function()
-  require("dap").set_breakpoint()
+  dap.set_breakpoint()
 end)
 vim.keymap.set("n", "<Leader>lp", function()
-  require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+  dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
 end)
 vim.keymap.set("n", "<Leader>dr", function()
-  require("dap").repl.open()
+  dap.repl.open()
 end)
 vim.keymap.set("n", "<Leader>dl", function()
-  require("dap").run_last()
+  dap.run_last()
 end)
 vim.keymap.set({ "n", "v" }, "<Leader>dh", function()
   require("dap.ui.widgets").hover()
@@ -664,6 +672,22 @@ vim.keymap.set("n", "<Leader>ds", function()
   local widgets = require("dap.ui.widgets")
   widgets.centered_float(widgets.scopes)
 end)
+
+local dapui = require("dapui")
+dapui.setup()
+
+dap.listeners.before.attach.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.launch.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated.dapui_config = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited.dapui_config = function()
+  dapui.close()
+end
 
 local lsp_lines = require("lsp_lines")
 lsp_lines.setup()
