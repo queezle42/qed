@@ -531,7 +531,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, mkopts("lsp: List workspace folders"))
     vim.keymap.set("n", "<leader>D", telescope_builtin.lsp_type_definitions, mkopts("Go to definition"))
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, mkopts("Rename symbol"))
+    vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, mkopts("Rename symbol"))
     vim.keymap.set({ "n", "v" }, "<leader>c", vim.lsp.buf.code_action, mkopts("Code action"))
     vim.keymap.set("n", "gr", telescope_builtin.lsp_references, mkopts("Go to reference"))
     vim.keymap.set("n", "<leader>f", function()
