@@ -178,6 +178,9 @@ pkgs.neovim.override {
         ))
         playground
 
+        # treesitter-based rainbow delimiters
+        rainbow-delimiters-nvim
+
         # treesitter-based dimming of inactive code
         twilight-nvim
 
